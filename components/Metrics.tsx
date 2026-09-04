@@ -14,7 +14,7 @@ const metrics = [
   },
   {
     tag: "// 02 · PARTNERS",
-    value: "04",
+    value: "08",
     unit: "+",
     label: "Brand Collaborations",
     desc: "AI-forward startups & creative studios",
