@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Custom properties — light palette ─────────────────────────────────── */
+:root {
+  --ink: #ffffff;
+  --surface: #f4f3f0;
+  --bone: #111110;
+  --slate: #888785;
+  --signal: #ff3d2e;
+  --hairline: rgba(0, 0, 0, 0.1);
+
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-ibm-plex-mono), monospace;
+
+  --section-y: 8rem;
+  --page-x: 5rem;
+  --ease-ryven: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─── Reset & base ───────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent layout shift from scrollbar appearing */
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-color: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+  /* GPU-accelerated compositing layer for the whole page */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── GPU compositing for animated / scroll-tracked elements ─────────────── */
+.section-spacing {
+  /* Promote each section to its own compositor layer */
+  contain: layout style;
+}
+
+video {
+  /* Hint GPU decode for video elements */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ─── Hairline dividers ──────────────────────────────────────────────────── */
+.hairline        { border-color: var(--hairline); }
+.hairline-top    { border-top: 1px solid var(--hairline); }
+.hairline-bottom { border-bottom: 1px solid var(--hairline); }
+
+/* ─── Viewfinder corner marks ───────────────────────────────────────────── */
+.viewfinder { position: relative; }
+
+.vf-tl, .vf-tr, .vf-bl, .vf-br,
+.corner-tl, .corner-br {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(0, 0, 0, 0.25);
+  border-style: solid;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.vf-tl               { top: 6px;    left: 6px;  border-width: 1px 0 0 1px; }
+.vf-tr               { top: 6px;    right: 6px; border-width: 1px 1px 0 0; }
+.vf-bl               { bottom: 6px; left: 6px;  border-width: 0 0 1px 1px; }
+.vf-br, .corner-br   { bottom: 6px; right: 6px; border-width: 0 1px 1px 0; }
+.corner-tl           { top: 6px;    left: 6px;  border-width: 1px 0 0 1px; }
+
+/* ─── Focus styles ───────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 1px solid var(--bone);
+  outline-offset: 3px;
+}
+
+/* ─── Selection ──────────────────────────────────────────────────────────── */
+::selection {
+  background-color: var(--bone);
+  color: var(--ink);
+}
+
+/* ─── Mono label base ────────────────────────────────────────────────────── */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--slate);
+}
+
+/* ─── Signal dot ─────────────────────────────────────────────────────────── */
+.signal-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--signal);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+/* ─── Marquee ────────────────────────────────────────────────────────────── */
+.marquee-track {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes marquee {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .signal-dot    { animation: none; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Container ──────────────────────────────────────────────────────────── */
+.container-ryven {
+  width: 100%;
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: var(--page-x);
+}
+
+@media (max-width: 480px) {
+  :root {
+    --section-y: 3.5rem;
+    --page-x: 1rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  :root {
+    --section-y: 4rem;
+    --page-x: 1.25rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  :root {
+    --section-y: 6rem;
+    --page-x: 2.5rem;
+  }
+}
+
+.section-spacing { padding-block: var(--section-y); }
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--slate); }
