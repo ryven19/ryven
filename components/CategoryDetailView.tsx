@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -13,6 +14,66 @@ import {
   showcaseCategories,
 } from "@/data/showcase";
 import { fadeUp, staggerContainer } from "@/lib/animations";
+
+// ─── Poster map for section cover videos ──────────────────────────────────────
+const SECTION_POSTERS: Record<string, string> = {
+  "/Air jordan ugc.mp4":       "/posters/air-jordan.jpg",
+  "/Clothing UGC.mp4":         "/posters/clothing-ugc.jpg",
+  "/Tutorial UGC.mp4":         "/posters/tutorial-ugc.jpg",
+  "/donut.mp4":                "/posters/donut.jpg",
+  "/goat_life.mp4":            "/posters/goat-life.jpg",
+  "/Goat_life2.mp4":           "/posters/goat-life2.jpg",
+  "/plush.mp4":                "/posters/plush.jpg",
+  "/good_habbits.mp4":         "/posters/good-habbits.jpg",
+  "/Oatly Product Ad.mp4":     "/posters/oatly.jpg",
+  "/Beverage Product Ad.mp4":  "/posters/beverage.jpg",
+  "/Ice-Cream Product Ad.mp4": "/posters/ice-cream.jpg",
+  "/clothing cinematic.mp4":   "/posters/clothing-cinematic.jpg",
+};
+
+// ─── CardVideo ────────────────────────────────────────────────────────────────
+// Lazy-loading card video for category grid. 0 bytes fetched until the card
+// enters the viewport; poster shows immediately so there is no black frame.
+function CardVideo({ src, className }: { src: string; className: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoad(true);
+          el.play().catch(() => {});
+        } else {
+          el.pause();
+        }
+      },
+      { threshold: 0.1, rootMargin: "150px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (shouldLoad) videoRef.current?.play().catch(() => {});
+  }, [shouldLoad]);
+
+  return (
+    <video
+      ref={videoRef}
+      loop
+      muted
+      playsInline
+      preload="none"
+      poster={SECTION_POSTERS[src]}
+      className={className}
+    />
+  );
+}
 
 export default function CategoryDetailView({
   category,
@@ -188,12 +249,8 @@ function LuxurySectionCard({
       {/* Visual frame — 4:5 portrait frame with perfect object containment/cover */}
       <div className="relative aspect-[4/5] w-full bg-[#f8f7f5] overflow-hidden flex items-center justify-center">
         {section.coverMedia.type === "video" ? (
-          <video
+          <CardVideo
             src={section.coverMedia.src}
-            loop
-            muted
-            playsInline
-            autoPlay
             className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-500"
           />
         ) : (

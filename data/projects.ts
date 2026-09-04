@@ -7,6 +7,8 @@ export type Project = {
   description: string;
   image?: string;
   video?: string;
+  /** Poster frame shown immediately while video lazy-loads */
+  poster?: string;
   link?: string;
 };
 
@@ -20,6 +22,7 @@ export const projects: Project[] = [
     description:
       "Dynamic UGC-style generative video campaign engineered for Air Jordan footwear.",
     video: "/Air jordan ugc.mp4",
+    poster: "/posters/air-jordan.jpg",
     link: "#",
   },
   {
@@ -31,6 +34,7 @@ export const projects: Project[] = [
     description:
       "High-production generative product commercial tailored for digital broadcast and social channels.",
     video: "/Oatly Product Ad.mp4",
+    poster: "/posters/oatly.jpg",
     link: "#",
   },
   {
@@ -42,6 +46,7 @@ export const projects: Project[] = [
     description:
       "A deliberate craft exercise — concept-driven macro commercial demonstrating that great output starts with how you think, not just what tools you use.",
     video: "/donut.mp4",
+    poster: "/posters/donut.jpg",
     link: "#",
   },
   {
@@ -53,6 +58,7 @@ export const projects: Project[] = [
     description:
       "Sensory macro food advertising produced through rapid generative synthesis workflows.",
     video: "/Ice-Cream Product Ad.mp4",
+    poster: "/posters/ice-cream.jpg",
     link: "#",
   },
   {
@@ -64,6 +70,7 @@ export const projects: Project[] = [
     description:
       "Next-generation creator UGC generated for modern fashion and streetwear brands.",
     video: "/Clothing UGC.mp4",
+    poster: "/posters/clothing-ugc.jpg",
     link: "#",
   },
   {
@@ -75,6 +82,7 @@ export const projects: Project[] = [
     description:
       "Engaging step-by-step UGC format designed for direct response and high conversion social ads.",
     video: "/Tutorial UGC.mp4",
+    poster: "/posters/tutorial-ugc.jpg",
     link: "#",
   },
 ];

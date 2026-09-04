@@ -107,13 +107,14 @@ export default function Hero() {
               <span className="vf-bl z-20" aria-hidden="true" />
               <span className="vf-br z-20" aria-hidden="true" />
 
-              {/* Video visual */}
+              {/* Video visual — poster shows instantly while video streams */}
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
                 preload="metadata"
+                poster="/posters/air-jordan.jpg"
                 className="absolute inset-0 w-full h-full object-cover"
               >
                 <source src="/Air jordan ugc.mp4" type="video/mp4" />

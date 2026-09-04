@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useInView } from "framer-motion";
@@ -9,6 +9,54 @@ import { crossfade, fadeUp, staggerContainer } from "@/lib/animations";
 import { showcaseCategories } from "@/data/showcase";
 
 type CategoryId = (typeof showcaseCategories)[number]["id"];
+
+// ─── Poster frames for each showcase featured video ───────────────────────────
+// Extracted at build time so a still frame shows immediately on first render.
+const SHOWCASE_POSTERS: Record<string, string> = {
+  "/Clothing UGC.mp4":   "/posters/clothing-ugc.jpg",
+  "/donut.mp4":          "/posters/donut.jpg",
+  "/Air jordan ugc.mp4": "/posters/air-jordan.jpg",
+};
+
+// ─── TabVideo ─────────────────────────────────────────────────────────────────
+// Lazy video for Showcase tabs. Key behaviours:
+//   • preload="none"  → 0 bytes fetched until this tab is first activated
+//   • <source> injected once on mount, never removed (no duplicate downloads)
+//   • poster shown instantly (no black flash during crossfade animation)
+//   • autoPlay / loop / muted / playsInline preserved exactly as before
+function TabVideo({ src, poster }: { src: string; poster?: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [sourceInjected, setSourceInjected] = useState(false);
+
+  // Inject the source and start playing on first mount (= first tab activation)
+  useEffect(() => {
+    setSourceInjected(true);
+    // Small rAF delay lets the crossfade animation start before the decode begins
+    const raf = requestAnimationFrame(() => {
+      videoRef.current?.play().catch(() => {});
+    });
+    return () => {
+      cancelAnimationFrame(raf);
+      // Pause when tab changes (AnimatePresence unmounts this)
+      videoRef.current?.pause();
+    };
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      loop
+      muted
+      playsInline
+      preload="none"
+      poster={poster}
+      className="w-full h-full object-cover bg-surface"
+    >
+      {sourceInjected && <source src={src} type="video/mp4" />}
+    </video>
+  );
+}
+
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Showcase() {
@@ -199,16 +247,10 @@ export default function Showcase() {
                     className="absolute inset-0 w-full h-full flex items-center justify-center bg-surface"
                   >
                     {activeCategory.featuredMedia.type === "video" ? (
-                      <video
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        preload="metadata"
-                        className="w-full h-full object-cover bg-surface"
-                      >
-                        <source src={activeCategory.featuredMedia.src} type="video/mp4" />
-                      </video>
+                      <TabVideo
+                        src={activeCategory.featuredMedia.src}
+                        poster={SHOWCASE_POSTERS[activeCategory.featuredMedia.src]}
+                      />
                     ) : (
                       /* eslint-disable-next-line @next/next/no-img-element */
                       <img

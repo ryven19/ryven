@@ -65,6 +65,7 @@ export default function Portfolio() {
                   {project.video ? (
                     <LazyVideo
                       src={project.video}
+                      poster={project.poster}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                   ) : project.image && project.image.startsWith("/") ? (
@@ -147,9 +148,20 @@ export default function Portfolio() {
 }
 
 // ─── Lazy Video: only plays when visible in viewport ─────────────────────────
-function LazyVideo({ src, className }: { src: string; className: string }) {
+// preload="none"   → browser downloads 0 bytes until the source is injected
+// poster           → shows a still frame immediately (no layout shift, no black box)
+// rootMargin 200px → starts loading ~200px before it enters view (smooth UX)
+function LazyVideo({
+  src,
+  poster,
+  className,
+}: {
+  src: string;
+  poster?: string;
+  className: string;
+}) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const el = videoRef.current;
@@ -157,19 +169,27 @@ function LazyVideo({ src, className }: { src: string; className: string }) {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
         if (entry.isIntersecting) {
+          setShouldLoad(true);      // inject <source> once and never remove
           el.play().catch(() => {});
         } else {
           el.pause();
         }
       },
-      { threshold: 0.2, rootMargin: "100px" }
+      // rootMargin 200px: begins loading slightly before the card scrolls in
+      { threshold: 0.1, rootMargin: "200px" }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
+
+  // Re-trigger play after source injection (handles the first-load case)
+  useEffect(() => {
+    if (shouldLoad) {
+      videoRef.current?.play().catch(() => {});
+    }
+  }, [shouldLoad]);
 
   return (
     <video
@@ -178,10 +198,11 @@ function LazyVideo({ src, className }: { src: string; className: string }) {
       muted
       playsInline
       preload="none"
+      poster={poster}
       className={className}
       aria-hidden="true"
     >
-      {isVisible && <source src={src} type="video/mp4" />}
+      {shouldLoad && <source src={src} type="video/mp4" />}
     </video>
   );
 }

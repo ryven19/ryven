@@ -47,9 +47,9 @@ export const showcaseCategories: ShowcaseCategory[] = [
     id: "ai-visuals",
     slug: "ai-visuals",
     label: "Visuals & Stills",
-    tagline: "High-fashion lookbooks & creative product shots",
+    tagline: "Lookbooks, product shots & editorial stills",
     description:
-      "Precision brand campaigns, editorial lookbooks, and high-impact creative product shots crafted for global lifestyle and digital brands.",
+      "Brand campaigns, editorial lookbooks, and product stills for lifestyle and digital brands.",
     longDescription:
       "A curated collection of photographic key visuals, editorial apparel lookbooks, creative product shots, and spatial studies produced for contemporary brands.",
     tag: "STILLS",
@@ -63,12 +63,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
         id: "clothing",
         slug: "clothing",
         title: "Clothing & Streetwear",
-        subtitle: "Bonkers Lookbook Volume 01",
+        subtitle: "Bonkers Lookbook Vol. 01",
         client: "Bonkers Apparel",
         year: "2024",
         tag: "LOOKBOOK",
         description:
-          "Editorial fashion lookbook exploring relaxed oversized cuts, heavyweight garment drapery, and high-contrast urban portraiture.",
+          "Oversized cuts, heavyweight drape, and urban portraiture.",
         coverMedia: {
           type: "image",
           src: "/bonkers.1.jpg",
@@ -76,12 +76,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "bonkers-01",
-            title: "Heavyweight Sweats & Street Editorial",
+            title: "Heavyweight Sweats",
             client: "Bonkers",
             category: "Editorial Lookbook",
             year: "2024",
             description:
-              "Sunlit urban street capture highlighting oversized garment silhouette, custom tailoring, and warm film-grade color.",
+              "Oversized silhouette, custom tailoring, warm film color.",
             mediaType: "image",
             src: "/bonkers.1.jpg",
             aspectRatio: "portrait",
@@ -89,12 +89,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "bonkers-02",
-            title: "Drift Bootcut Denim Campaign",
+            title: "Drift Bootcut Denim",
             client: "Bonkers",
             category: "Campaign Poster",
             year: "2024",
             description:
-              "High-impact denim campaign poster featuring textured washed denim, bold brutalist typography, and e-commerce launch visual.",
+              "Washed denim, brutalist typography, e-commerce launch visual.",
             mediaType: "image",
             src: "/Bonkers.2.jpg",
             aspectRatio: "portrait",
@@ -102,12 +102,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "bonkers-03",
-            title: "Street Silhouette & Kinetic Fit",
+            title: "Street Silhouette",
             client: "Bonkers",
             category: "Streetwear Lookbook",
             year: "2024",
             description:
-              "Dynamic urban angle highlighting outerwear drape, layered garment proportions, and raw street atmosphere.",
+              "Outerwear drape, layered proportions, raw street atmosphere.",
             mediaType: "image",
             src: "/bonkers.3.jpg",
             aspectRatio: "portrait",
@@ -115,12 +115,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "bonkers-04",
-            title: "Studio Pattern & Hoodie Series",
+            title: "Studio Hoodie Series",
             client: "Bonkers",
             category: "Studio Lookbook",
             year: "2024",
             description:
-              "Clean studio backdrop study focusing on embossed tonal hoodie patterns, textile detailing, and contemporary model styling.",
+              "Tonal hoodie patterns, textile detail, clean studio backdrop.",
             mediaType: "image",
             src: "/Bonkers.4.jpg",
             aspectRatio: "portrait",
@@ -129,17 +129,17 @@ export const showcaseCategories: ShowcaseCategory[] = [
         ],
       },
 
-      // ─── 02: CREATIVE PRODUCT SHOTS (ALL AVIF FILES) ───────────────────────
+      // ─── 02: CREATIVE PRODUCT SHOTS ────────────────────────────────────────
       {
         id: "creative-product-shots",
         slug: "creative-product-shots",
         title: "Creative Product Shots",
-        subtitle: "Botanical & Studio Still Life Suite",
+        subtitle: "Studio Still Life Suite",
         client: "Creative Series",
         year: "2024",
         tag: "PRODUCT",
         description:
-          "Macro botanical still lifes, studio product key visuals, and hyper-detailed commercial shots with dynamic lighting and clean composition.",
+          "Studio product stills and macro key visuals — clean light, sharp form.",
         coverMedia: {
           type: "image",
           src: "/static ad1.avif",
@@ -147,12 +147,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "prod-static-01",
-            title: "Orchard Club Sparkling Botanical Water",
+            title: "Orchard Club Botanical Water",
             client: "Orchard Club",
-            category: "Commercial Key Visual",
+            category: "Key Visual",
             year: "2024",
             description:
-              "Atmospheric botanical still life with natural fruit elements and frosted aluminium can reflections.",
+              "Botanical still life — fresh fruit, frosted can reflections.",
             mediaType: "image",
             src: "/static ad1.avif",
             aspectRatio: "portrait",
@@ -160,12 +160,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "prod-01",
-            title: "Creative Product Shot 01",
+            title: "Product Still 01",
             client: "Studio Series",
             category: "Product Still",
             year: "2024",
-            description:
-              "Macro product lighting composition engineered for high-impact e-commerce and digital commercial placement.",
+            description: "Studio lighting for e-commerce and campaign use.",
             mediaType: "image",
             src: "/1.avif",
             aspectRatio: "portrait",
@@ -173,12 +172,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "prod-02",
-            title: "Creative Product Shot 02",
+            title: "Product Still 02",
             client: "Studio Series",
             category: "Product Still",
             year: "2024",
-            description:
-              "Precision commercial studio placement featuring controlled reflections and sharp textural detail.",
+            description: "Controlled reflections, sharp textural detail.",
             mediaType: "image",
             src: "/2.avif",
             aspectRatio: "portrait",
@@ -186,12 +184,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "prod-03",
-            title: "Creative Product Shot 03",
+            title: "Product Still 03",
             client: "Studio Series",
             category: "Product Still",
             year: "2024",
-            description:
-              "High-contrast product visual focusing on sculptural form, premium material finishes, and balanced staging.",
+            description: "Sculptural form, premium finish, balanced staging.",
             mediaType: "image",
             src: "/3 (1).avif",
             aspectRatio: "portrait",
@@ -199,12 +196,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "prod-04",
-            title: "Creative Product Shot 04",
+            title: "Product Still 04",
             client: "Studio Series",
             category: "Product Still",
             year: "2024",
-            description:
-              "Clean studio backdrop study with dynamic gradient lighting and focused product hero angle.",
+            description: "Gradient studio light, focused hero angle.",
             mediaType: "image",
             src: "/4.avif",
             aspectRatio: "portrait",
@@ -212,12 +208,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "prod-05",
-            title: "Creative Product Shot 05",
+            title: "Product Still 05",
             client: "Studio Series",
             category: "Product Still",
             year: "2024",
-            description:
-              "Atmospheric lifestyle product placement highlighting organic color tones and elegant minimalism.",
+            description: "Organic tones, clean minimalist placement.",
             mediaType: "image",
             src: "/5.avif",
             aspectRatio: "portrait",
@@ -225,12 +220,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "prod-06",
-            title: "Creative Product Shot 06",
+            title: "Product Still 06",
             client: "Studio Series",
             category: "Product Still",
             year: "2024",
-            description:
-              "Macro perspective detailing product surface geometry and pristine studio illumination.",
+            description: "Surface geometry and pristine studio illumination.",
             mediaType: "image",
             src: "/6 (1).avif",
             aspectRatio: "portrait",
@@ -238,12 +232,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "prod-07",
-            title: "Creative Product Shot 07",
+            title: "Product Still 07",
             client: "Studio Series",
             category: "Product Still",
             year: "2024",
-            description:
-              "Dynamic packaging and product hero capture tailored for modern advertising campaigns.",
+            description: "Packaging hero angle for modern advertising.",
             mediaType: "image",
             src: "/7.avif",
             aspectRatio: "portrait",
@@ -251,12 +244,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "prod-08",
-            title: "Creative Product Shot 08",
+            title: "Product Still 08",
             client: "Studio Series",
             category: "Product Still",
             year: "2024",
-            description:
-              "Sophisticated studio composition highlighting contrast, refined shadows, and product depth.",
+            description: "High-contrast composition, refined shadow depth.",
             mediaType: "image",
             src: "/8.avif",
             aspectRatio: "portrait",
@@ -264,12 +256,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "prod-09",
-            title: "Creative Product Shot 09",
+            title: "Product Still 09",
             client: "Studio Series",
             category: "Product Still",
             year: "2024",
-            description:
-              "Sensory material composition with high-definition texture resolution and clean color grading.",
+            description: "Texture-forward material study, clean color grade.",
             mediaType: "image",
             src: "/9.avif",
             aspectRatio: "portrait",
@@ -277,12 +268,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "prod-10",
-            title: "Creative Product Shot 10",
+            title: "Product Still 10",
             client: "Studio Series",
             category: "Product Still",
             year: "2024",
-            description:
-              "Master commercial key visual showcasing pristine surface clarity and contemporary art direction.",
+            description: "Surface clarity, contemporary art direction.",
             mediaType: "image",
             src: "/10.avif",
             aspectRatio: "portrait",
@@ -296,12 +286,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
         id: "footwear",
         slug: "footwear",
         title: "Footwear & CMF",
-        subtitle: "AeroStep Velocity Series",
+        subtitle: "AeroStep",
         client: "AeroStep",
         year: "2024",
         tag: "FOOTWEAR",
         description:
-          "Sculptural footwear studies highlighting midsole architecture, knit engineering, and studio product lighting.",
+          "Midsole architecture and studio hero angles.",
         coverMedia: {
           type: "image",
           src: "/sneakers.2.jpeg",
@@ -309,12 +299,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "vis-05",
-            title: "Sole Architecture Study",
+            title: "Sole Architecture",
             client: "AeroStep",
             category: "Macro Product",
             year: "2024",
-            description:
-              "Close-up focus on foam midsole geometry, tread structure, and composite material transitions.",
+            description: "Midsole geometry, tread structure, material transitions.",
             mediaType: "image",
             src: "/sneaker.1.jpeg",
             aspectRatio: "portrait",
@@ -326,8 +315,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
             client: "AeroStep",
             category: "Hero Still",
             year: "2024",
-            description:
-              "Floating hero profile with controlled rim lighting and polished reflective acrylic stage.",
+            description: "Floating hero with rim lighting on reflective stage.",
             mediaType: "image",
             src: "/sneakers.2.jpeg",
             aspectRatio: "portrait",
@@ -336,17 +324,17 @@ export const showcaseCategories: ShowcaseCategory[] = [
         ],
       },
 
-      // ─── 04: SKINCARE & BATH PRODUCTS ──────────────────────────────────────
+      // ─── 04: SKINCARE & BATH ───────────────────────────────────────────────
       {
         id: "skincare-bath",
         slug: "skincare-bath",
         title: "Skincare & Bath",
-        subtitle: "Lumina Organic Bath & Body Suite",
+        subtitle: "Lumina Living",
         client: "Lumina Living",
         year: "2024",
         tag: "SKINCARE",
         description:
-          "Minimalist bath and body still lifes, tactile travertine textures, warm ambient lighting, and organic skincare aesthetics.",
+          "Warm light, organic textures, minimalist bath stills.",
         coverMedia: {
           type: "image",
           src: "/minimalist.1.jpeg",
@@ -354,12 +342,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "vis-07",
-            title: "Warm Concrete & Bath Suite",
+            title: "Concrete & Bath Suite",
             client: "Lumina",
             category: "Bath & Skincare",
             year: "2024",
-            description:
-              "Warm daylight bath suite with sculpted concrete, natural oak elements, and atmospheric ambient lighting.",
+            description: "Daylight setting — sculpted concrete, natural oak.",
             mediaType: "image",
             src: "/minimalist.1.jpeg",
             aspectRatio: "portrait",
@@ -367,12 +354,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "vis-08",
-            title: "Sculptural Bathroom & Vanity Stills",
+            title: "Vanity & Wellness",
             client: "Lumina",
             category: "Vanity & Wellness",
             year: "2024",
-            description:
-              "Curved minimalist vanity space set against natural diffuse light and soft warm tones.",
+            description: "Curved minimalist vanity in diffuse natural light.",
             mediaType: "image",
             src: "/minimalist.2.jpeg",
             aspectRatio: "portrait",
@@ -380,16 +366,142 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "vis-09",
-            title: "Botanical Travertine & Product Detail",
+            title: "Travertine Detail",
             client: "Lumina",
-            category: "Material & Product Study",
+            category: "Material Study",
             year: "2024",
-            description:
-              "Extreme macro detailing travertine stone textures, fluted glass, and refined brass bath hardware.",
+            description: "Stone, fluted glass, and brass hardware — macro.",
             mediaType: "image",
             src: "/minimalist.3.jpeg",
             aspectRatio: "portrait",
             tags: ["Bath & Body", "Travertine", "Detail"],
+          },
+        ],
+      },
+
+      // ─── 05: FASHION SHOTS ──────────────────────────────────────────────────
+      {
+        id: "fashion-shots",
+        slug: "fashion-shots",
+        title: "Fashion Shots",
+        subtitle: "Editorial Portraiture",
+        client: "Creative Series",
+        year: "2024",
+        tag: "FASHION",
+        description:
+          "Bold editorial portraits and campaign stills.",
+        coverMedia: {
+          type: "image",
+          src: "/fashion shot 1.png",
+        },
+        deliverables: [
+          {
+            id: "fashion-01",
+            title: "Fashion Shot 01",
+            client: "Creative Series",
+            category: "Fashion Editorial",
+            year: "2024",
+            description: "Bold styling, editorial-grade light.",
+            mediaType: "image",
+            src: "/fashion shot 1.png",
+            aspectRatio: "portrait",
+            tags: ["Fashion", "Editorial", "Portrait"],
+          },
+          {
+            id: "fashion-02",
+            title: "Fashion Shot 02",
+            client: "Creative Series",
+            category: "Fashion Editorial",
+            year: "2024",
+            description: "Sculptural garment form, controlled studio light.",
+            mediaType: "image",
+            src: "/fashion shot 2.png",
+            aspectRatio: "portrait",
+            tags: ["Fashion", "Studio", "Garment"],
+          },
+          {
+            id: "fashion-03",
+            title: "Fashion Shot 03",
+            client: "Creative Series",
+            category: "Fashion Editorial",
+            year: "2024",
+            description: "Movement, texture, and contrast.",
+            mediaType: "image",
+            src: "/fashion shot 3.png",
+            aspectRatio: "portrait",
+            tags: ["Fashion", "Movement", "Texture"],
+          },
+          {
+            id: "fashion-04",
+            title: "Fashion Shot 04",
+            client: "Creative Series",
+            category: "Fashion Editorial",
+            year: "2024",
+            description: "High-contrast tones, precise art direction.",
+            mediaType: "image",
+            src: "/fashion shot 4.png",
+            aspectRatio: "portrait",
+            tags: ["Fashion", "Drama", "Art Direction"],
+          },
+          {
+            id: "fashion-05",
+            title: "Fashion Shot 05",
+            client: "Creative Series",
+            category: "Fashion Editorial",
+            year: "2024",
+            description: "Silhouette, proportion, and tone.",
+            mediaType: "image",
+            src: "/fashion shot 5.png",
+            aspectRatio: "portrait",
+            tags: ["Fashion", "Silhouette", "Composition"],
+          },
+          {
+            id: "fashion-06",
+            title: "Fashion Shot 06",
+            client: "Creative Series",
+            category: "Fashion Editorial",
+            year: "2024",
+            description: "Refined palette, sharp editorial framing.",
+            mediaType: "image",
+            src: "/fashion shot 6.png",
+            aspectRatio: "portrait",
+            tags: ["Fashion", "Campaign", "Color"],
+          },
+          {
+            id: "fashion-07",
+            title: "Fashion Shot 07",
+            client: "Creative Series",
+            category: "Fashion Editorial",
+            year: "2024",
+            description: "Maximalist styling, graphic presence.",
+            mediaType: "image",
+            src: "/fashion shot 7.png",
+            aspectRatio: "portrait",
+            tags: ["Fashion", "Statement", "Graphic"],
+          },
+          {
+            id: "fashion-08",
+            title: "Fashion Shot 08",
+            client: "Creative Series",
+            category: "Fashion Editorial",
+            year: "2024",
+            description: "Layered depth and moody editorial tone.",
+            mediaType: "image",
+            src: "/fashion shot 8.png",
+            aspectRatio: "portrait",
+            tags: ["Fashion", "Atmosphere", "Mood"],
+          },
+          {
+            id: "fashion-09",
+            title: "Fashion Shot 09",
+            client: "Creative Series",
+            category: "Fashion Editorial",
+            year: "2024",
+            description: "Garment detail — craft, material, finesse.",
+            mediaType: "image",
+            src: "/fashion shot 9.png",
+            aspectRatio: "portrait",
+            tags: ["Fashion", "Detail", "Craft"],
           },
         ],
       },
@@ -399,9 +511,9 @@ export const showcaseCategories: ShowcaseCategory[] = [
     id: "ai-video",
     slug: "ai-video",
     label: "Video & Motion",
-    tagline: "Dynamic video reels & creator motion",
+    tagline: "Creator reels & short-form video ads",
     description:
-      "Contemporary video ads, creator reels, and kinetic product films crafted for high engagement across digital channels.",
+      "Short-form video ads, creator reels, and product films for digital-first brands.",
     longDescription:
       "Selected short-form video films, creator reels, and motion showcases designed for modern lifestyle and digital-first brands.",
     tag: "MOTION",
@@ -413,13 +525,13 @@ export const showcaseCategories: ShowcaseCategory[] = [
       {
         id: "footwear-ugc",
         slug: "footwear-ugc",
-        title: "Footwear & Motion Reel",
-        subtitle: "Air Jordan Retro Kinetic",
+        title: "Footwear Motion Reel",
+        subtitle: "Air Jordan Retro",
         client: "Jordan",
         year: "2024",
         tag: "REEL",
         description:
-          "Dynamic vertical video showcasing unboxing flow, tactical sneaker rotation, and rhythm-synced street motion.",
+          "Unboxing flow, sneaker rotation, rhythm-synced street motion.",
         coverMedia: {
           type: "video",
           src: "/Air jordan ugc.mp4",
@@ -427,12 +539,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "vid-01",
-            title: "Air Jordan Retro 4 Kinetic",
+            title: "Air Jordan Retro 4",
             client: "Jordan",
             category: "Motion Reel",
             year: "2024",
-            description:
-              "Dynamic vertical film showcasing unboxing flow, tactical sneaker rotation, and rhythm-synced styling.",
+            description: "Unboxing, rotation, rhythm-synced styling.",
             mediaType: "video",
             src: "/Air jordan ugc.mp4",
             aspectRatio: "portrait",
@@ -444,12 +555,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         id: "clothing-ugc",
         slug: "clothing-ugc",
         title: "Clothing UGC",
-        subtitle: "Aura Apparel Casual Wear",
+        subtitle: "Aura Apparel",
         client: "Aura Apparel",
         year: "2024",
         tag: "CLOTHING",
-        description:
-          "Dynamic clothing and lifestyle reel presenting casual fits, fabric drape in motion, and clean urban pacing.",
+        description: "Casual fits and fabric in motion — clean urban pacing.",
         coverMedia: {
           type: "video",
           src: "/Clothing UGC.mp4",
@@ -457,12 +567,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "vid-02",
-            title: "Aura Apparel Casual Clothing Reel",
+            title: "Casual Clothing Reel",
             client: "Aura Apparel",
             category: "Clothing UGC",
             year: "2024",
-            description:
-              "Dynamic clothing video reel presenting casual fits, fabric drape in motion, and clean pacing.",
+            description: "Casual fits, fabric drape, clean pacing.",
             mediaType: "video",
             src: "/Clothing UGC.mp4",
             aspectRatio: "portrait",
@@ -473,13 +582,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
       {
         id: "product-ugc",
         slug: "product-ugc",
-        title: "Product Showcase Reel",
-        subtitle: "PureForm Skincare Routine",
+        title: "Product Showcase",
+        subtitle: "PureForm Skincare",
         client: "PureForm",
         year: "2024",
         tag: "PRODUCT",
-        description:
-          "Step-by-step product walkthrough engineered for clarity, elegant pacing, and high visual retention.",
+        description: "Step-by-step product walkthrough — clarity and pacing.",
         coverMedia: {
           type: "video",
           src: "/Tutorial UGC.mp4",
@@ -487,12 +595,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "vid-03",
-            title: "Skincare Routine Showcase",
+            title: "Skincare Routine",
             client: "PureForm",
             category: "Product Film",
             year: "2024",
-            description:
-              "Step-by-step product walkthrough engineered for clarity, elegant pacing, and high visual retention.",
+            description: "Step-by-step walkthrough, elegant pacing.",
             mediaType: "video",
             src: "/Tutorial UGC.mp4",
             aspectRatio: "portrait",
@@ -508,7 +615,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
     label: "Commercials & Films",
     tagline: "End-to-end commercial productions",
     description:
-      "Full product commercials from narrative storyboard to master delivery — combining cinematography, 3D motion, and sound design.",
+      "Full commercials — concept to delivery. Cinematography, motion, sound.",
     longDescription:
       "Master commercial spots, macro culinary films, and sensory beverage stories crafted for multi-platform broadcasting.",
     tag: "FILMS",
@@ -526,7 +633,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
         year: "2024",
         tag: "CRAFT FILM",
         description:
-          "A deliberate exercise in concept-first production. Every frame is intentional — proving that what separates good creative from forgettable output is how you think before you shoot.",
+          "Every frame intentional — concept first, execution second.",
         coverMedia: {
           type: "video",
           src: "/donut.mp4",
@@ -534,12 +641,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "donut-01",
-            title: "Proof of Craft — Macro Film",
+            title: "Proof of Craft",
             client: "Creative Series",
             category: "Concept Film",
             year: "2024",
             description:
-              "Macro commercial built around a single creative brief: show texture, light and timing with the same rigour applied to any premium brand campaign.",
+              "Macro film — texture, light, and timing at full rigor.",
             mediaType: "video",
             src: "/donut.mp4",
             aspectRatio: "portrait",
@@ -551,12 +658,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         id: "goat-life",
         slug: "goat-life",
         title: "Goat Life Campaign",
-        subtitle: "High-Cadence Lifestyle & Beverage Series",
+        subtitle: "Lifestyle & Beverage",
         client: "Goat Life",
         year: "2024",
         tag: "COMMERCIAL",
-        description:
-          "High-energy commercial series blending kinetic urban pacing, bold lifestyle framing, and dynamic motion transitions.",
+        description: "Kinetic pacing, bold lifestyle framing, dynamic cuts.",
         coverMedia: {
           type: "video",
           src: "/goat_life.mp4",
@@ -564,12 +670,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "goat-01",
-            title: "Goat Life — Master Commercial Film",
+            title: "Master Commercial",
             client: "Goat Life",
             category: "Commercial Film",
             year: "2024",
-            description:
-              "Master commercial cut featuring vibrant lifestyle cinematography, dynamic motion tracking, and polished sound design.",
+            description: "Vibrant lifestyle cinematography, polished sound.",
             mediaType: "video",
             src: "/goat_life.mp4",
             aspectRatio: "portrait",
@@ -577,12 +682,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "goat-02",
-            title: "Goat Life — Kinetic Motion Cut",
+            title: "Kinetic Cut",
             client: "Goat Life",
             category: "Motion Cut",
             year: "2024",
-            description:
-              "Fast-paced short-form cut optimized for high retention across digital broadcast and social channels.",
+            description: "Fast-paced short-form cut for social and broadcast.",
             mediaType: "video",
             src: "/Goat_life2.mp4",
             aspectRatio: "portrait",
@@ -593,13 +697,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
       {
         id: "plush",
         slug: "plush",
-        title: "Plush Wellness Commercial",
-        subtitle: "Organic Bodycare & Lifestyle Spot",
+        title: "Plush Wellness",
+        subtitle: "Organic Bodycare Spot",
         client: "Plush",
         year: "2024",
         tag: "WELLNESS",
-        description:
-          "Sensory wellness commercial exploring gentle organic textures, warm ambient studio lighting, and elegant product storytelling.",
+        description: "Organic textures, warm studio light, clean brand story.",
         coverMedia: {
           type: "video",
           src: "/plush.mp4",
@@ -607,12 +710,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "plush-01",
-            title: "Plush — Sensory Bodycare Showcase",
+            title: "Bodycare Spot",
             client: "Plush",
             category: "Commercial Spot",
             year: "2024",
-            description:
-              "Elegant product commercial highlighting organic formulation, soft diffusion lighting, and clean branding.",
+            description: "Soft diffusion, organic formulation, clean branding.",
             mediaType: "video",
             src: "/plush.mp4",
             aspectRatio: "portrait",
@@ -623,13 +725,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
       {
         id: "good-habits",
         slug: "good-habits",
-        title: "Good Habits Brand Film",
-        subtitle: "Daily Routine & Nutrition Showcase",
+        title: "Good Habits",
+        subtitle: "Daily Nutrition Brand Film",
         client: "Good Habits",
         year: "2024",
         tag: "BRAND FILM",
-        description:
-          "Engaging narrative commercial spot designed around daily healthy rituals, pristine product integration, and upbeat pacing.",
+        description: "Daily rituals, product integration, upbeat rhythm.",
         coverMedia: {
           type: "video",
           src: "/good_habbits.mp4",
@@ -637,12 +738,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "habits-01",
-            title: "Good Habits — Master Brand Film",
+            title: "Brand Film",
             client: "Good Habits",
             category: "Brand Commercial",
             year: "2024",
-            description:
-              "Dynamic daily routine visual spot capturing genuine lifestyle moments and clear product benefit communication.",
+            description: "Lifestyle moments and product benefit, in motion.",
             mediaType: "video",
             src: "/good_habbits.mp4",
             aspectRatio: "portrait",
@@ -653,13 +753,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
       {
         id: "oatly",
         slug: "oatly",
-        title: "Oatly Precision Commercial",
-        subtitle: "Broadcast Fluid & Typography Spot",
+        title: "Oatly Commercial",
+        subtitle: "Fluid & Typography Spot",
         client: "Oatly",
         year: "2024",
         tag: "BROADCAST",
-        description:
-          "Broadcast commercial blending playful kinetic typography, photorealistic fluid physics, and pristine color grading.",
+        description: "Kinetic typography, fluid physics, pristine grade.",
         coverMedia: {
           type: "video",
           src: "/Oatly Product Ad.mp4",
@@ -667,12 +766,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "camp-01",
-            title: "Oatly Precision Commercial",
+            title: "Oatly Broadcast Spot",
             client: "Oatly",
             category: "Broadcast Spot",
             year: "2024",
-            description:
-              "Broadcast commercial blending playful kinetic typography, photorealistic fluid physics, and pristine color grading.",
+            description: "Kinetic type, fluid physics, clean color grade.",
             mediaType: "video",
             src: "/Oatly Product Ad.mp4",
             aspectRatio: "portrait",
@@ -683,13 +781,12 @@ export const showcaseCategories: ShowcaseCategory[] = [
       {
         id: "beverage-sensory",
         slug: "beverage-sensory",
-        title: "Sensory Beverage & Culinary Spots",
-        subtitle: "Drift Botanical & Velvet Gelato Films",
+        title: "Beverage & Culinary",
+        subtitle: "Drift Botanical & Velvet Gelato",
         client: "Drift & Velvet",
         year: "2024",
         tag: "SENSORY",
-        description:
-          "Sensory macro food and beverage spots featuring macro condensation droplets, carbonation dynamics, and slow-motion texture ribbons.",
+        description: "Macro condensation, carbonation, slow-motion texture.",
         coverMedia: {
           type: "video",
           src: "/Beverage Product Ad.mp4",
@@ -697,12 +794,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
         deliverables: [
           {
             id: "camp-02",
-            title: "Drift Botanical Refreshment",
+            title: "Drift Botanical",
             client: "Drift",
             category: "Commercial Spot",
             year: "2024",
-            description:
-              "Sensory beverage film with macro condensation droplets, carbonation dynamics, and rich ambient audio master.",
+            description: "Condensation droplets, carbonation, ambient audio.",
             mediaType: "video",
             src: "/Beverage Product Ad.mp4",
             aspectRatio: "portrait",
@@ -710,12 +806,11 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
           {
             id: "camp-03",
-            title: "Velvet Gelato Macro Showcase",
+            title: "Velvet Gelato",
             client: "Velvet",
             category: "Culinary Film",
             year: "2023",
-            description:
-              "Macro food commercial featuring decadent texture ribbons, slow-motion scoops, and warm studio lighting.",
+            description: "Slow-motion scoops, texture ribbons, warm light.",
             mediaType: "video",
             src: "/Ice-Cream Product Ad.mp4",
             aspectRatio: "portrait",
