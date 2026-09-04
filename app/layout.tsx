@@ -27,7 +27,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ryven.studio"), // update with real domain before launch
-  title: "Ryven — AI Creative & Commercial Studio",
+  title: "Ryven | AI Creative & Commercial Studio",
   description:
     "Ryven is an AI creative studio producing high-impact commercials, product visuals, UGC, and video ads for ambitious brands.",
   keywords: [
@@ -43,23 +43,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ryven.studio", // placeholder — update with real domain
+    url: "https://ryven.studio", // update with real domain
     siteName: "Ryven",
-    title: "Ryven — AI Creative & Commercial Studio",
+    title: "Ryven | AI Creative & Commercial Studio",
     description:
       "AI creative and commercial video production for modern brands. Product ads, UGC, and digital campaigns.",
     images: [
       {
-        url: "/og-image.png", // placeholder — add real OG image before launch
+        url: "/og-image.png", // add real OG image before launch
         width: 1200,
         height: 630,
-        alt: "Ryven — AI + Creative Technology Studio",
+        alt: "Ryven | AI + Creative Technology Studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ryven — AI + Creative Technology Studio",
+    title: "Ryven | AI + Creative Technology Studio",
     description:
       "AI and creative technology for brands moving faster.",
     images: ["/og-image.png"], // placeholder

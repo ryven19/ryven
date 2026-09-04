@@ -113,8 +113,6 @@ export default function Portfolio() {
                           {project.description}
                         </p>
                         <div className="flex items-center gap-2">
-                          <span className="mono-label text-white/70">{project.year}</span>
-                          <span className="mono-label text-white/40">·</span>
                           <span className="mono-label text-white font-medium">{project.category}</span>
                         </div>
                       </motion.div>
@@ -136,7 +134,6 @@ export default function Portfolio() {
                       ))}
                     </div>
                   </div>
-                  <span className="mono-label text-slate text-xs flex-shrink-0 ml-3 sm:ml-4 font-mono">{project.year}</span>
                 </div>
               </div>
             </motion.article>

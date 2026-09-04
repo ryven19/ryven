@@ -33,7 +33,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${data.section.title} — ${data.category.label} | Ryven`,
+    title: `${data.section.title} | ${data.category.label} | Ryven`,
     description: data.section.description,
   };
 }

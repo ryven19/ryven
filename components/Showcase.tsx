@@ -100,7 +100,7 @@ export default function Showcase() {
   return (
     <section
       id="showcase"
-      aria-label="Showcase — where ideas become output"
+      aria-label="Showcase: where ideas become output"
       className="section-spacing border-t border-[rgba(0,0,0,0.1)] bg-white"
     >
       <div className="container-ryven" ref={ref}>
@@ -121,7 +121,7 @@ export default function Showcase() {
                 <em className="font-serif italic font-normal">output.</em>
               </h2>
               <p className="font-sans text-sm text-slate leading-relaxed max-w-md">
-                Select a capability to inspect live creative synthesis — AI video pipelines, generative stills, and high-cadence commercial output.
+                Select a capability to inspect live creative synthesis covering AI video pipelines, generative stills, and high-cadence commercial output.
               </p>
             </motion.div>
 

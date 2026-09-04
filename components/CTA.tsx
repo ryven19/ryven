@@ -12,7 +12,7 @@ export default function CTA() {
   return (
     <section
       id="contact"
-      aria-label="Contact — start a project"
+      aria-label="Contact and start a project"
       className="section-spacing border-t border-[rgba(0,0,0,0.1)]"
     >
       <div className="container-ryven" ref={ref}>
@@ -55,7 +55,7 @@ export default function CTA() {
               rel="noopener noreferrer"
               className="font-mono text-mono-label text-bone tracking-[0.08em] uppercase border border-bone px-6 sm:px-8 py-3.5 sm:py-4 text-center justify-center hover:bg-bone hover:text-ink transition-all duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone min-h-[44px] flex items-center"
               style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
-              aria-label="Start a project — fill out inquiry form"
+              aria-label="Start a project and fill out inquiry form"
             >
               Start a project →
             </a>

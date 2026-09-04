@@ -41,7 +41,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-4 flex flex-col gap-4">
             <Link
               href="/"
-              aria-label="Ryven — home"
+              aria-label="Ryven home"
               className="flex items-center gap-2 group w-fit focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone"
             >
               <Image

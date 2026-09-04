@@ -11,7 +11,7 @@ const nodes = [
     id: "discover",
     label: "Discover",
     index: "01",
-    description: "Brief, brand tone, and audience hooks — aligning on creative goals.",
+    description: "Brief, brand tone, and audience hooks to align on creative goals.",
   },
   {
     id: "concept",
@@ -51,7 +51,7 @@ export default function Process() {
   return (
     <section
       id="process"
-      aria-label="Our process — signal path"
+      aria-label="Our process signal path"
       className="section-spacing border-t border-[rgba(0,0,0,0.1)]"
     >
       <div className="container-ryven" ref={sectionRef}>

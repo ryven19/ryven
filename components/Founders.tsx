@@ -9,14 +9,14 @@ const creators = [
     name: "Kushal",
     handle: "@kushalfinds.ai",
     photo: "/kushal dp.jpeg",
-    bio: "Co-founder of RYVEN. Makes and publishes AI content to a real, growing audience — which means every brand brief gets filtered through the instincts of someone who actually has to earn attention, not just produce it.",
+    bio: "Co-founder of RYVEN. Makes and publishes AI content to a real, growing audience, which means every brand brief gets filtered through the instincts of someone who actually has to earn attention, not just produce it.",
     instagramUrl: "https://www.instagram.com/kushalfinds.ai/",
   },
   {
     name: "Nikhil",
     handle: "@nikkkhil.ai",
     photo: "/nikhil dp.jpeg",
-    bio: "Co-founder of RYVEN. A visual storyteller and AI experimenter — creating content that sits at the edge of what the tools can do. Brings that same restlessness to the work we produce for brands.",
+    bio: "Co-founder of RYVEN. A visual storyteller and AI experimenter, creating content that sits at the edge of what the tools can do. Brings that same restlessness to the work we produce for brands.",
     instagramUrl: "https://www.instagram.com/nikkkhil.ai/",
   },
 ];
@@ -52,7 +52,7 @@ export default function Founders() {
               </h2>
               <p className="font-sans text-base text-slate leading-relaxed max-w-sm">
                 RYVEN is built by two active creators. We don&apos;t just produce
-                content for brands — we make it, publish it and understand
+                content for brands. We make it, publish it, and understand
                 what holds attention from inside the same feed as your
                 audience.
               </p>
@@ -123,7 +123,7 @@ export default function Founders() {
                       "hover:border-bone transition-colors duration-300",
                       "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone",
                     ].join(" ")}
-                    aria-label={`View ${creator.name}'s Instagram — ${creator.handle}`}
+                    aria-label={`View ${creator.name}'s Instagram (${creator.handle})`}
                   >
                     View Instagram
                     <span aria-hidden="true" className="text-signal">↗</span>

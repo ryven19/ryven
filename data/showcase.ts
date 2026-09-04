@@ -139,7 +139,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
         year: "2024",
         tag: "PRODUCT",
         description:
-          "Studio product stills and macro key visuals — clean light, sharp form.",
+          "Studio product stills and macro key visuals with clean light and sharp form.",
         coverMedia: {
           type: "image",
           src: "/static ad1.avif",
@@ -152,7 +152,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
             category: "Key Visual",
             year: "2024",
             description:
-              "Botanical still life — fresh fruit, frosted can reflections.",
+              "Botanical still life featuring fresh fruit and frosted can reflections.",
             mediaType: "image",
             src: "/static ad1.avif",
             aspectRatio: "portrait",
@@ -346,7 +346,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
             client: "Lumina",
             category: "Bath & Skincare",
             year: "2024",
-            description: "Daylight setting — sculpted concrete, natural oak.",
+            description: "Daylight setting with sculpted concrete and natural oak.",
             mediaType: "image",
             src: "/minimalist.1.jpeg",
             aspectRatio: "portrait",
@@ -370,7 +370,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
             client: "Lumina",
             category: "Material Study",
             year: "2024",
-            description: "Stone, fluted glass, and brass hardware — macro.",
+            description: "Stone, fluted glass, and brass hardware macro study.",
             mediaType: "image",
             src: "/minimalist.3.jpeg",
             aspectRatio: "portrait",
@@ -497,7 +497,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
             client: "Creative Series",
             category: "Fashion Editorial",
             year: "2024",
-            description: "Garment detail — craft, material, finesse.",
+            description: "Garment detail focusing on craft, material, and finesse.",
             mediaType: "image",
             src: "/fashion shot 9.png",
             aspectRatio: "portrait",
@@ -559,7 +559,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
         client: "Aura Apparel",
         year: "2024",
         tag: "CLOTHING",
-        description: "Casual fits and fabric in motion — clean urban pacing.",
+        description: "Casual fits and fabric in motion with clean urban pacing.",
         coverMedia: {
           type: "video",
           src: "/Clothing UGC.mp4",
@@ -587,7 +587,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
         client: "PureForm",
         year: "2024",
         tag: "PRODUCT",
-        description: "Step-by-step product walkthrough — clarity and pacing.",
+        description: "Step-by-step product walkthrough for clarity and pacing.",
         coverMedia: {
           type: "video",
           src: "/Tutorial UGC.mp4",
@@ -615,7 +615,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
     label: "Commercials & Films",
     tagline: "End-to-end commercial productions",
     description:
-      "Full commercials — concept to delivery. Cinematography, motion, sound.",
+      "Full commercials from concept to delivery. Cinematography, motion, sound.",
     longDescription:
       "Master commercial spots, macro culinary films, and sensory beverage stories crafted for multi-platform broadcasting.",
     tag: "FILMS",
@@ -633,7 +633,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
         year: "2024",
         tag: "CRAFT FILM",
         description:
-          "Every frame intentional — concept first, execution second.",
+          "Every frame intentional: concept first, execution second.",
         coverMedia: {
           type: "video",
           src: "/donut.mp4",
@@ -646,7 +646,7 @@ export const showcaseCategories: ShowcaseCategory[] = [
             category: "Concept Film",
             year: "2024",
             description:
-              "Macro film — texture, light, and timing at full rigor.",
+              "Macro film focusing on texture, light, and timing at full rigor.",
             mediaType: "video",
             src: "/donut.mp4",
             aspectRatio: "portrait",

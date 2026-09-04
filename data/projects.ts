@@ -44,7 +44,7 @@ export const projects: Project[] = [
     year: "2024",
     services: ["Concept Development", "Macro Direction", "Color Grading"],
     description:
-      "A deliberate craft exercise — concept-driven macro commercial demonstrating that great output starts with how you think, not just what tools you use.",
+      "A deliberate concept-driven macro commercial demonstrating that great output starts with how you think, not just what tools you use.",
     video: "/donut.mp4",
     poster: "/posters/donut.jpg",
     link: "#",

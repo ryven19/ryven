@@ -26,7 +26,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${category.label} — Work & References | Ryven`,
+    title: `${category.label} | Work & References | Ryven`,
     description: category.description,
   };
 }

@@ -12,7 +12,7 @@ export default function Services() {
   return (
     <section
       id="services"
-      aria-label="Services — what Ryven does"
+      aria-label="Services: what Ryven does"
       className="section-spacing border-t border-[rgba(0,0,0,0.1)]"
     >
       <div className="container-ryven" ref={ref}>
@@ -31,7 +31,7 @@ export default function Services() {
             </h2>
           </motion.div>
           <motion.p variants={fadeUp} className="font-sans text-sm text-slate max-w-xs leading-relaxed">
-            A focused set of AI-driven creative capabilities — each built for
+            A focused set of AI-driven creative capabilities built for
             brand impact and rapid delivery.
           </motion.p>
         </motion.div>
