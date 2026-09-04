@@ -19,41 +19,57 @@ const SHOWCASE_POSTERS: Record<string, string> = {
 };
 
 // ─── TabVideo ─────────────────────────────────────────────────────────────────
-// Lazy video for Showcase tabs. Key behaviours:
-//   • preload="none"  → 0 bytes fetched until this tab is first activated
-//   • <source> injected once on mount, never removed (no duplicate downloads)
-//   • poster shown instantly (no black flash during crossfade animation)
-//   • autoPlay / loop / muted / playsInline preserved exactly as before
+// Tab-activated video for Showcase:
+//   • Only mounts when this tab is selected
+//   • preload="auto" + direct src for instant start
+//   • defaultMuted/muted set directly on DOM node for reliable autoplay
+//   • poster shown immediately to prevent visual flash
 function TabVideo({ src, poster }: { src: string; poster?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [sourceInjected, setSourceInjected] = useState(false);
 
-  // Inject the source and start playing on first mount (= first tab activation)
   useEffect(() => {
-    setSourceInjected(true);
-    // Small rAF delay lets the crossfade animation start before the decode begins
-    const raf = requestAnimationFrame(() => {
-      videoRef.current?.play().catch(() => {});
-    });
-    return () => {
-      cancelAnimationFrame(raf);
-      // Pause when tab changes (AnimatePresence unmounts this)
-      videoRef.current?.pause();
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+
+    const play = () => {
+      const p = video.play();
+      if (p !== undefined) {
+        p.catch(() => {});
+      }
     };
-  }, []);
+
+    play();
+
+    return () => {
+      video.pause();
+    };
+  }, [src]);
+
+  const handleCanPlay = () => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+  };
 
   return (
     <video
       ref={videoRef}
+      src={src}
+      autoPlay
       loop
       muted
       playsInline
-      preload="none"
+      preload="auto"
       poster={poster}
+      onCanPlay={handleCanPlay}
       className="w-full h-full object-cover bg-surface"
-    >
-      {sourceInjected && <source src={src} type="video/mp4" />}
-    </video>
+    />
   );
 }
 

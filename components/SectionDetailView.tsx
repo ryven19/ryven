@@ -37,10 +37,12 @@ const GALLERY_POSTERS: Record<string, string> = {
 
 // ─── GalleryVideo ─────────────────────────────────────────────────────────────
 // Lazy-loading video for the works gallery grid.
-// • preload="none"  → 0 bytes fetched until the card enters the viewport
-// • poster shown immediately so no black frames while loading
+// ─── GalleryVideo ─────────────────────────────────────────────────────────────
+// Fast preloading & instant playback for the works gallery grid:
+// • Preload observer (rootMargin 600px): buffers frames before card enters view
+// • Viewport observer: plays immediately when visible, pauses when scrolled out
+// • onCanPlay: triggers immediate playback the instant frames are ready
 // • isMuted prop forwarded from parent (user-controlled mute button)
-// • source injected once; not re-fetched if component re-renders
 function GalleryVideo({
   src,
   isMuted,
@@ -52,42 +54,79 @@ function GalleryVideo({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
-    const observer = new IntersectionObserver(
+
+    const preloadObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setShouldLoad(true);
-          el.play().catch(() => {});
-        } else {
-          el.pause();
+          preloadObserver.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "150px" }
+      { rootMargin: "600px" }
     );
-    observer.observe(el);
-    return () => observer.disconnect();
+
+    preloadObserver.observe(el);
+    return () => preloadObserver.disconnect();
   }, []);
 
-  // Re-trigger play after source injection
   useEffect(() => {
-    if (shouldLoad) videoRef.current?.play().catch(() => {});
-  }, [shouldLoad]);
+    const el = videoRef.current;
+    if (!el) return;
+
+    const playObserver = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0.1, rootMargin: "40px" }
+    );
+
+    playObserver.observe(el);
+    return () => playObserver.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !shouldLoad) return;
+
+    el.defaultMuted = isMuted;
+    el.muted = isMuted;
+    el.playsInline = true;
+
+    if (inView) {
+      const p = el.play();
+      if (p !== undefined) {
+        p.catch(() => {});
+      }
+    } else {
+      el.pause();
+    }
+  }, [inView, shouldLoad, isMuted]);
+
+  const handleCanPlay = () => {
+    if (inView && videoRef.current) {
+      videoRef.current.defaultMuted = isMuted;
+      videoRef.current.muted = isMuted;
+      videoRef.current.play().catch(() => {});
+    }
+  };
 
   return (
     <video
       ref={videoRef}
+      src={shouldLoad ? src : undefined}
       loop
       muted={isMuted}
       playsInline
-      preload="none"
+      preload={shouldLoad ? "auto" : "none"}
       poster={GALLERY_POSTERS[src]}
+      onCanPlay={handleCanPlay}
       className={className}
-    >
-      {shouldLoad && <source src={src} type="video/mp4" />}
-    </video>
+    />
   );
 }
 

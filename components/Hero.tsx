@@ -1,13 +1,46 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
+
+  // Direct DOM property assignment to satisfy browser autoplay policy immediately
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+
+    const playVideo = () => {
+      const p = video.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          // Fallback: start on first touch/click if browser blocks un-interacted media
+          const resume = () => {
+            if (videoRef.current) {
+              videoRef.current.defaultMuted = true;
+              videoRef.current.muted = true;
+              videoRef.current.play().catch(() => {});
+            }
+            window.removeEventListener("touchstart", resume);
+            window.removeEventListener("click", resume);
+          };
+          window.addEventListener("touchstart", resume, { once: true, passive: true });
+          window.addEventListener("click", resume, { once: true, passive: true });
+        });
+      }
+    };
+
+    playVideo();
+  }, []);
 
   return (
     <section
@@ -107,18 +140,18 @@ export default function Hero() {
               <span className="vf-bl z-20" aria-hidden="true" />
               <span className="vf-br z-20" aria-hidden="true" />
 
-              {/* Video visual — poster shows instantly while video streams */}
+              {/* Video visual — autoplays immediately without pause/play overlay */}
               <video
+                ref={videoRef}
+                src="/Air jordan ugc.mp4"
                 autoPlay
                 loop
                 muted
                 playsInline
-                preload="metadata"
+                preload="auto"
                 poster="/posters/air-jordan.jpg"
                 className="absolute inset-0 w-full h-full object-cover"
-              >
-                <source src="/Air jordan ugc.mp4" type="video/mp4" />
-              </video>
+              />
 
               {/* Viewfinder info strip at bottom */}
               <div className="absolute bottom-0 left-0 right-0 flex items-center justify-between px-3 sm:px-4 py-2 border-t border-[rgba(0,0,0,0.1)] bg-white/70 backdrop-blur-sm z-10">

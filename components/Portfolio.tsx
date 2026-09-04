@@ -147,10 +147,10 @@ export default function Portfolio() {
   );
 }
 
-// ─── Lazy Video: only plays when visible in viewport ─────────────────────────
-// preload="none"   → browser downloads 0 bytes until the source is injected
-// poster           → shows a still frame immediately (no layout shift, no black box)
-// rootMargin 200px → starts loading ~200px before it enters view (smooth UX)
+// ─── Lazy Video: fast preloading & instant playback ──────────────────────────
+// 1. Preload observer (rootMargin 800px): begins buffering frames before card arrives
+// 2. Playback observer: plays immediately when visible, pauses when scrolled out
+// 3. onCanPlay fallback: starts playback the exact millisecond first frames buffer
 function LazyVideo({
   src,
   poster,
@@ -162,47 +162,83 @@ function LazyVideo({
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const [inView, setInView] = useState(false);
 
+  // 1. Preload early: start downloading when user is within 800px
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
+    const preloadObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShouldLoad(true);      // inject <source> once and never remove
-          el.play().catch(() => {});
-        } else {
-          el.pause();
+          setShouldLoad(true);
+          preloadObserver.disconnect();
         }
       },
-      // rootMargin 200px: begins loading slightly before the card scrolls in
-      { threshold: 0.1, rootMargin: "200px" }
+      { rootMargin: "800px" }
     );
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    preloadObserver.observe(el);
+    return () => preloadObserver.disconnect();
   }, []);
 
-  // Re-trigger play after source injection (handles the first-load case)
+  // 2. Viewport playback: play when in view, pause when out
   useEffect(() => {
-    if (shouldLoad) {
-      videoRef.current?.play().catch(() => {});
+    const el = videoRef.current;
+    if (!el) return;
+
+    const playObserver = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0.1, rootMargin: "40px" }
+    );
+
+    playObserver.observe(el);
+    return () => playObserver.disconnect();
+  }, []);
+
+  // 3. Execute play/pause when inView or shouldLoad changes
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !shouldLoad) return;
+
+    el.defaultMuted = true;
+    el.muted = true;
+    el.playsInline = true;
+
+    if (inView) {
+      const p = el.play();
+      if (p !== undefined) {
+        p.catch(() => {});
+      }
+    } else {
+      el.pause();
     }
-  }, [shouldLoad]);
+  }, [inView, shouldLoad]);
+
+  // If user scrolls fast into view while video was buffering, start instantly on ready
+  const handleCanPlay = () => {
+    if (inView && videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+  };
 
   return (
     <video
       ref={videoRef}
+      src={shouldLoad ? src : undefined}
       loop
       muted
       playsInline
-      preload="none"
+      preload={shouldLoad ? "auto" : "none"}
       poster={poster}
+      onCanPlay={handleCanPlay}
       className={className}
       aria-hidden="true"
-    >
-      {shouldLoad && <source src={src} type="video/mp4" />}
-    </video>
+    />
   );
 }

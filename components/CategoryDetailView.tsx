@@ -32,44 +32,84 @@ const SECTION_POSTERS: Record<string, string> = {
 };
 
 // ─── CardVideo ────────────────────────────────────────────────────────────────
-// Lazy-loading card video for category grid. 0 bytes fetched until the card
-// enters the viewport; poster shows immediately so there is no black frame.
+// Fast preloading & instant playback for category section cards:
+//   • Preload observer (rootMargin 600px): buffers ahead before card scrolls into view
+//   • Viewport observer: triggers immediate playback when visible, pauses when out
+//   • onCanPlay: guarantees immediate start as soon as first frames ready
 function CardVideo({ src, className }: { src: string; className: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const [inView, setInView] = useState(false);
 
   useEffect(() => {
     const el = videoRef.current;
     if (!el) return;
 
-    const observer = new IntersectionObserver(
+    const preloadObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setShouldLoad(true);
-          el.play().catch(() => {});
-        } else {
-          el.pause();
+          preloadObserver.disconnect();
         }
       },
-      { threshold: 0.1, rootMargin: "150px" }
+      { rootMargin: "600px" }
     );
 
-    observer.observe(el);
-    return () => observer.disconnect();
+    preloadObserver.observe(el);
+    return () => preloadObserver.disconnect();
   }, []);
 
   useEffect(() => {
-    if (shouldLoad) videoRef.current?.play().catch(() => {});
-  }, [shouldLoad]);
+    const el = videoRef.current;
+    if (!el) return;
+
+    const playObserver = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0.1, rootMargin: "40px" }
+    );
+
+    playObserver.observe(el);
+    return () => playObserver.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !shouldLoad) return;
+
+    el.defaultMuted = true;
+    el.muted = true;
+    el.playsInline = true;
+
+    if (inView) {
+      const p = el.play();
+      if (p !== undefined) {
+        p.catch(() => {});
+      }
+    } else {
+      el.pause();
+    }
+  }, [inView, shouldLoad]);
+
+  const handleCanPlay = () => {
+    if (inView && videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+  };
 
   return (
     <video
       ref={videoRef}
+      src={shouldLoad ? src : undefined}
       loop
       muted
       playsInline
-      preload="none"
+      preload={shouldLoad ? "auto" : "none"}
       poster={SECTION_POSTERS[src]}
+      onCanPlay={handleCanPlay}
       className={className}
     />
   );
