@@ -27,14 +27,14 @@ export const projects: Project[] = [
   },
   {
     id: "02",
-    name: "Oatly Product Ad",
-    category: "Commercials & Ads",
+    name: "AI Podcast Style Ad",
+    category: "AI Video",
     year: "2024",
-    services: ["Brand Story", "AI Motion", "Sound Design"],
+    services: ["Podcast Format", "AI Video", "Performance Creative"],
     description:
-      "High-production generative product commercial tailored for digital broadcast and social channels.",
-    video: "/Oatly Product Ad.mp4",
-    poster: "/posters/oatly.jpg",
+      "Podcast-style video ad format engineered for high engagement and direct response on social platforms.",
+    video: "/AI-Podcast style videos for products.mp4",
+    poster: "/posters/podcast-ad.jpg",
     link: "#",
   },
   {
@@ -51,14 +51,14 @@ export const projects: Project[] = [
   },
   {
     id: "04",
-    name: "Ice-Cream Product Spot",
+    name: "Oatly Product Ad",
     category: "Commercials & Ads",
-    year: "2023",
-    services: ["Macro AI Video", "Color Grading", "Art Direction"],
+    year: "2024",
+    services: ["Brand Story", "AI Motion", "Sound Design"],
     description:
-      "Sensory macro food advertising produced through rapid generative synthesis workflows.",
-    video: "/Ice-Cream Product Ad.mp4",
-    poster: "/posters/ice-cream.jpg",
+      "High-production generative product commercial tailored for digital broadcast and social channels.",
+    video: "/Oatly Product Ad.mp4",
+    poster: "/posters/oatly.jpg",
     link: "#",
   },
   {

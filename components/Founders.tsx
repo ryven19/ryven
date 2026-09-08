@@ -6,6 +6,13 @@ import { fadeUp, staggerContainer } from "@/lib/animations";
 
 const creators = [
   {
+    name: "Gurmeet",
+    handle: "@gurmeet__oberoi",
+    photo: "/gurmeet dp.jpg",
+    bio: "Co-founder of RYVEN. Expert in performance marketing and AI systems, scaling data-driven growth strategies and automated workflows for high-impact brand campaigns.",
+    instagramUrl: "https://www.instagram.com/gurmeet__oberoi/",
+  },
+  {
     name: "Kushal",
     handle: "@kushalfinds.ai",
     photo: "/kushal dp.jpeg",
@@ -51,10 +58,13 @@ export default function Founders() {
                 <em className="font-serif italic font-normal">creators.</em>
               </h2>
               <p className="font-sans text-base text-slate leading-relaxed max-w-sm">
-                RYVEN is built by two active creators. We don&apos;t just produce
+                RYVEN is built by active creators. We don&apos;t just produce
                 content for brands. We make it, publish it, and understand
                 what holds attention from inside the same feed as your
                 audience.
+              </p>
+              <p className="mono-label text-slate/70 mt-1">
+                Creative directors · strategists · editors · performance marketers — senior only. No junior ever touches the work.
               </p>
             </div>
 
@@ -62,10 +72,10 @@ export default function Founders() {
             <div className="flex flex-col gap-1">
               <div className="flex items-baseline gap-1">
                 <span className="font-sans font-medium text-2xl text-bone tracking-tight leading-none">
-                  70K+
+                  100K+
                 </span>
               </div>
-              <span className="mono-label">Combined audience across both channels</span>
+              <span className="mono-label">Self-owned distribution via AI on Instagram</span>
             </div>
           </motion.div>
 

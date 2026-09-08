@@ -523,6 +523,36 @@ export const showcaseCategories: ShowcaseCategory[] = [
     },
     sections: [
       {
+        id: "podcast-style-ad",
+        slug: "podcast-style-ad",
+        title: "Podcast Style Ad",
+        subtitle: "Performance Creative Format",
+        client: "Creative Series",
+        year: "2024",
+        tag: "PODCAST",
+        description:
+          "Podcast-style video format built for high engagement and direct response on social.",
+        coverMedia: {
+          type: "video",
+          src: "/AI-Podcast style videos for products.mp4",
+        },
+        deliverables: [
+          {
+            id: "podcast-01",
+            title: "AI Podcast Style Ad",
+            client: "Creative Series",
+            category: "Performance Creative",
+            year: "2024",
+            description:
+              "Podcast-format ad engineered for direct response and scroll-stopping retention.",
+            mediaType: "video",
+            src: "/AI-Podcast style videos for products.mp4",
+            aspectRatio: "portrait",
+            tags: ["Podcast", "Performance", "AI Video", "Social"],
+          },
+        ],
+      },
+      {
         id: "footwear-ugc",
         slug: "footwear-ugc",
         title: "Footwear Motion Reel",

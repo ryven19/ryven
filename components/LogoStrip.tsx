@@ -16,7 +16,7 @@ export default function LogoStrip() {
     >
       <div className="container-ryven mb-4 sm:mb-6">
         <p className="mono-label text-[0.65rem] text-slate">
-          // TRUSTED BY AI & CREATIVE TEAMS
+          // IN PARTNERSHIP WITH
         </p>
       </div>
 
