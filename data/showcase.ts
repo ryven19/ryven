@@ -637,6 +637,66 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
         ],
       },
+      {
+        id: "cal-ai-ugc",
+        slug: "cal-ai-ugc",
+        title: "Cal AI UGC",
+        subtitle: "Performance Ad Creative",
+        client: "Cal AI",
+        year: "2025",
+        tag: "UGC",
+        description:
+          "High-converting UGC-style ad for Cal AI — engineered for social performance and direct response.",
+        coverMedia: {
+          type: "video",
+          src: "/Cal AI UGC.mov",
+        },
+        deliverables: [
+          {
+            id: "cal-ai-01",
+            title: "Cal AI UGC Ad",
+            client: "Cal AI",
+            category: "UGC Performance Ad",
+            year: "2025",
+            description:
+              "Scroll-stopping UGC format built for conversion and retention.",
+            mediaType: "video",
+            src: "/Cal AI UGC.mov",
+            aspectRatio: "portrait",
+            tags: ["UGC", "Performance", "AI Video", "Social"],
+          },
+        ],
+      },
+      {
+        id: "protein-podcast-ad",
+        slug: "protein-podcast-ad",
+        title: "Protein Podcast Ad",
+        subtitle: "Direct Response Format",
+        client: "Creative Series",
+        year: "2025",
+        tag: "PODCAST",
+        description:
+          "Podcast-style performance creative for a protein brand — high retention, direct response format.",
+        coverMedia: {
+          type: "video",
+          src: "/Protein Podcast Ads.mp4",
+        },
+        deliverables: [
+          {
+            id: "protein-podcast-01",
+            title: "Protein Podcast Ad",
+            client: "Creative Series",
+            category: "Performance Creative",
+            year: "2025",
+            description:
+              "Podcast-format ad for a protein brand, engineered for scroll-stopping retention.",
+            mediaType: "video",
+            src: "/Protein Podcast Ads.mp4",
+            aspectRatio: "portrait",
+            tags: ["Podcast", "Performance", "AI Video", "Social"],
+          },
+        ],
+      },
     ],
   },
   {
@@ -845,6 +905,36 @@ export const showcaseCategories: ShowcaseCategory[] = [
             src: "/Ice-Cream Product Ad.mp4",
             aspectRatio: "portrait",
             tags: ["Food", "Slow Motion", "Commercial"],
+          },
+        ],
+      },
+      {
+        id: "maybelline-ad",
+        slug: "maybelline-ad",
+        title: "Maybelline Ad",
+        subtitle: "Beauty Product Commercial",
+        client: "Maybelline",
+        year: "2025",
+        tag: "BEAUTY",
+        description:
+          "Cinematic beauty commercial for Maybelline — bold visuals, precision editing.",
+        coverMedia: {
+          type: "video",
+          src: "/maybeliene.mp4",
+        },
+        deliverables: [
+          {
+            id: "maybelline-01",
+            title: "Maybelline Commercial",
+            client: "Maybelline",
+            category: "Beauty Commercial",
+            year: "2025",
+            description:
+              "High-impact beauty commercial with cinematic framing and clean product showcase.",
+            mediaType: "video",
+            src: "/maybeliene.mp4",
+            aspectRatio: "video",
+            tags: ["Beauty", "Commercial", "Cinematic", "Brand Film"],
           },
         ],
       },

@@ -33,6 +33,9 @@ const GALLERY_POSTERS: Record<string, string> = {
   "/Beverage Product Ad.mp4":  "/posters/beverage.jpg",
   "/Ice-Cream Product Ad.mp4": "/posters/ice-cream.jpg",
   "/clothing cinematic.mp4":   "/posters/clothing-cinematic.jpg",
+  "/Cal AI UGC.mov":           "/posters/cal-ai-ugc.jpg",
+  "/Protein Podcast Ads.mp4":  "/posters/protein-podcast.jpg",
+  "/maybeliene.mp4":           "/posters/maybeliene.jpg",
 };
 
 // ─── GalleryVideo ─────────────────────────────────────────────────────────────

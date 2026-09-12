@@ -51,14 +51,14 @@ export const projects: Project[] = [
   },
   {
     id: "04",
-    name: "Oatly Product Ad",
-    category: "Commercials & Ads",
-    year: "2024",
-    services: ["Brand Story", "AI Motion", "Sound Design"],
+    name: "Cal AI UGC",
+    category: "AI Video",
+    year: "2025",
+    services: ["UGC Creative", "AI Video", "Performance Ad"],
     description:
-      "High-production generative product commercial tailored for digital broadcast and social channels.",
-    video: "/Oatly Product Ad.mp4",
-    poster: "/posters/oatly.jpg",
+      "High-converting UGC-style ad for Cal AI — engineered for social performance and direct response.",
+    video: "/Cal AI UGC.mov",
+    poster: "/posters/cal-ai-ugc.jpg",
     link: "#",
   },
   {
