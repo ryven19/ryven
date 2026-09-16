@@ -15,7 +15,7 @@ const navClusters = [
   {
     label: "Contact",
     links: [
-      { label: "Start a project", href: "https://tally.so/r/EkOeVB", external: true },
+      { label: "Contact us", href: "https://tally.so/r/EkOeVB", external: true },
       { label: "contact@ryven.website", href: "mailto:contact@ryven.website", external: true },
       { label: "Instagram", href: "https://www.instagram.com/ryven.ai/", external: true },
     ],

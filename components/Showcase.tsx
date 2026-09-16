@@ -77,25 +77,29 @@ function TabVideo({ src, poster }: { src: string; poster?: string }) {
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Showcase() {
   const [activeId, setActiveId] = useState<CategoryId>("ai-visuals");
+  const [hoveredId, setHoveredId] = useState<CategoryId | null>(null);
   const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-10%" });
 
   const activeCategory = showcaseCategories.find((c) => c.id === activeId)!;
 
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent, id: CategoryId) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        setActiveId(id);
-      }
+  const handleNavigate = useCallback(
+    (slug: string) => {
+      router.push(`/work/${slug}`);
     },
-    []
+    [router]
   );
 
-  const handleNavigate = (id: CategoryId) => {
-    router.push(`/work/${id}`);
-  };
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent, slug: string) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleNavigate(slug);
+      }
+    },
+    [handleNavigate]
+  );
 
   return (
     <section
@@ -109,70 +113,90 @@ export default function Showcase() {
           variants={staggerContainer}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 lg:items-center"
         >
-          {/* Left Column — 7 columns */}
-          <div className="lg:col-span-7 flex flex-col gap-0">
-            {/* Header block */}
-            <motion.div variants={fadeUp} className="mb-6 md:mb-8">
-              <p className="mono-label mb-2 md:mb-3">// THE LOOP, IN PRACTICE</p>
-              <h2 className="font-sans font-medium text-display-md text-bone leading-tight tracking-[-0.02em] mb-3 md:mb-4">
-                Where ideas become{" "}
-                <em className="font-serif italic font-normal">output.</em>
-              </h2>
-              <p className="font-sans text-sm text-slate leading-relaxed max-w-md">
-                Select a capability to inspect live creative synthesis covering AI video pipelines, generative stills, and high-cadence commercial output.
-              </p>
-            </motion.div>
+          {/* Header block */}
+          <motion.div variants={fadeUp} className="order-1 lg:col-span-7 lg:row-start-1 mb-6 md:mb-8">
+            <p className="mono-label mb-2 md:mb-3">// THE LOOP, IN PRACTICE</p>
+            <h2 className="font-sans font-medium text-display-md text-bone leading-tight tracking-[-0.02em] mb-3 md:mb-4">
+              Where ideas become{" "}
+              <em className="font-serif italic font-normal">output.</em>
+            </h2>
+            <p className="font-sans text-sm text-slate leading-relaxed max-w-md">
+              Select a capability to inspect live creative synthesis covering AI video pipelines, generative stills, and high-cadence commercial output.
+            </p>
+          </motion.div>
 
-            {/* Interactive Capability Selector Tabs */}
-            <motion.div
-              variants={fadeUp}
-              className="flex flex-col border-t border-[rgba(0,0,0,0.08)]"
-              role="tablist"
-              aria-label="Work categories"
-            >
+          {/* Interactive Capability Selector */}
+          <motion.div
+            variants={fadeUp}
+            className="order-2 lg:col-span-7 lg:row-start-2 flex flex-col border-t border-[rgba(0,0,0,0.08)]"
+            role="list"
+            aria-label="Work categories"
+          >
               {showcaseCategories.map((cat, idx) => {
                 const isActive = cat.id === activeId;
+                const isHovered = cat.id === hoveredId;
                 return (
                   <div
                     key={cat.id}
-                    role="tab"
-                    aria-selected={isActive}
-                    aria-controls={`panel-${cat.id}`}
-                    id={`tab-${cat.id}`}
+                    role="listitem"
                     tabIndex={0}
-                    onClick={() => setActiveId(cat.id)}
-                    onDoubleClick={() => handleNavigate(cat.id)}
-                    onKeyDown={(e) => handleKeyDown(e, cat.id)}
+                    onMouseEnter={() => {
+                      setActiveId(cat.id);
+                      setHoveredId(cat.id);
+                    }}
+                    onMouseLeave={() => setHoveredId(null)}
+                    onClick={() => handleNavigate(cat.slug)}
+                    onKeyDown={(e) => handleKeyDown(e, cat.slug)}
+                    aria-label={`${cat.label} — ${cat.description}`}
                     className={`w-full text-left py-3.5 md:py-5 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone cursor-pointer select-none border-b border-[rgba(0,0,0,0.08)] ${
                       isActive
                         ? "text-bone"
                         : "text-slate hover:text-bone"
                     }`}
                   >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3 md:gap-3.5">
-                        <span className="mono-label text-xs font-mono w-5 flex-shrink-0 opacity-40">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-start gap-3 md:gap-3.5 min-w-0">
+                        <span className="mono-label text-xs font-mono w-5 flex-shrink-0 opacity-40 pt-1">
                           {String(idx + 1).padStart(2, "0")}
                         </span>
-                        <div className="flex items-center gap-2.5">
-                          <span
-                            className="w-2 h-2 rounded-full flex-shrink-0 transition-all duration-300"
-                            style={{
-                              backgroundColor: isActive ? "var(--signal)" : "transparent",
-                              boxShadow: isActive ? "0 0 0 4px rgba(255,61,46,0.18)" : "none",
-                              border: isActive ? "none" : "1px solid rgba(0,0,0,0.2)",
-                            }}
-                            aria-hidden="true"
-                          />
-                          <span className="font-sans text-base md:text-lg font-medium tracking-tight">
-                            {cat.label}
-                          </span>
+                        <div className="flex flex-col min-w-0">
+                          <div className="flex items-center gap-2.5">
+                            <span
+                              className="w-2 h-2 rounded-full flex-shrink-0 transition-all duration-300"
+                              style={{
+                                backgroundColor: isActive ? "var(--signal)" : "transparent",
+                                boxShadow: isActive ? "0 0 0 4px rgba(255,61,46,0.18)" : "none",
+                                border: isActive ? "none" : "1px solid rgba(0,0,0,0.2)",
+                              }}
+                              aria-hidden="true"
+                            />
+                            <span className="font-sans text-base md:text-lg font-medium tracking-tight">
+                              {cat.label}
+                            </span>
+                          </div>
+
+                          {/* Hover dropdown — desktop only, sits below label */}
+                          <AnimatePresence>
+                            {isHovered && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                className="hidden md:block overflow-hidden"
+                              >
+                                <p className="font-sans text-xs md:text-sm text-slate mt-2 leading-relaxed max-w-md">
+                                  {cat.description}
+                                </p>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-2 flex-shrink-0">
+                      <div className="flex items-center gap-2 flex-shrink-0 pt-0.5">
                         <span
                           className={`mono-label px-2.5 py-0.5 text-[0.65rem] border transition-colors ${
                             isActive
@@ -182,59 +206,27 @@ export default function Showcase() {
                         >
                           {cat.tag}
                         </span>
-                        <Link
-                          href={`/work/${cat.slug}`}
-                          onClick={(e) => e.stopPropagation()}
-                          aria-label={`Open ${cat.label} samples`}
+                        <span
+                          aria-hidden="true"
                           className={`w-8 h-8 md:w-7 md:h-7 border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
                             isActive
-                              ? "border-bone/30 text-bone hover:bg-bone hover:text-white bg-white shadow-xs"
-                              : "border-[rgba(0,0,0,0.1)] text-slate hover:text-bone hover:border-bone"
+                              ? "border-bone/30 text-bone bg-white shadow-xs"
+                              : "border-[rgba(0,0,0,0.1)] text-slate group-hover:text-bone group-hover:border-bone"
                           }`}
                         >
                           <ArrowUpRight className="w-3.5 h-3.5" />
-                        </Link>
+                        </span>
                       </div>
                     </div>
-
-                    {/* Active description — smooth expand */}
-                    <AnimatePresence>
-                      {isActive && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                          className="overflow-hidden"
-                        >
-                          <p className="font-sans text-xs md:text-sm text-slate mt-2 md:mt-2.5 pl-6 sm:pl-8 leading-relaxed">
-                            {cat.description}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
                   </div>
                 );
               })}
-            </motion.div>
+          </motion.div>
 
-            {/* Bottom telemetry */}
-            <motion.div
-              variants={fadeUp}
-              className="flex flex-wrap items-center justify-between gap-2 pt-3 mt-3 sm:pt-4 sm:mt-4"
-            >
-              <div className="flex items-center gap-2">
-                <span className="signal-dot" aria-hidden="true" />
-                <span className="mono-label text-slate">AI Synthesis Pipeline · Active</span>
-              </div>
-              <span className="mono-label text-slate">24 FPS Studio Reel</span>
-            </motion.div>
-          </div>
-
-          {/* Right Column — 5 columns, centered vertically with compact media frame */}
+          {/* Video preview — below categories on mobile, right column on desktop */}
           <motion.div
             variants={fadeUp}
-            className="lg:col-span-5 flex flex-col items-center lg:items-end justify-center w-full"
+            className="order-3 lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:row-span-3 flex flex-col items-center lg:items-end justify-center w-full"
             role="tabpanel"
             id={`panel-${activeId}`}
             aria-labelledby={`tab-${activeId}`}
@@ -244,7 +236,7 @@ export default function Showcase() {
               <div
                 className="viewfinder relative w-full aspect-[4/5] bg-surface flex items-center justify-center overflow-hidden cursor-pointer group"
                 aria-label={`Preview: ${activeCategory.label}`}
-                onClick={() => handleNavigate(activeCategory.id)}
+                onClick={() => handleNavigate(activeCategory.slug)}
                 title="Click to open samples page"
               >
                 {/* Viewfinder corner marks */}
@@ -319,6 +311,18 @@ export default function Showcase() {
                 </Link>
               </div>
             </div>
+          </motion.div>
+
+          {/* Bottom telemetry */}
+          <motion.div
+            variants={fadeUp}
+            className="order-4 lg:col-span-7 lg:row-start-3 flex flex-wrap items-center justify-between gap-2 pt-3 mt-3 sm:pt-4 sm:mt-4"
+          >
+            <div className="flex items-center gap-2">
+              <span className="signal-dot" aria-hidden="true" />
+              <span className="mono-label text-slate">AI Synthesis Pipeline · Active</span>
+            </div>
+            <span className="mono-label text-slate">24 FPS Studio Reel</span>
           </motion.div>
         </motion.div>
       </div>

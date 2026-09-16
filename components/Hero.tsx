@@ -44,6 +44,7 @@ export default function Hero() {
 
   return (
     <section
+      id="hero"
       aria-label="Hero"
       className="relative min-h-screen flex flex-col justify-center section-spacing pt-24 sm:pt-32 md:pt-40 pb-12 md:pb-24"
     >
@@ -92,6 +93,15 @@ export default function Hero() {
               variants={fadeUp}
               className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto"
             >
+              <a
+                href="https://tally.so/r/EkOeVB"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-shimmer font-mono text-mono-label text-ink tracking-[0.08em] uppercase bg-bone px-6 py-3.5 sm:py-3 text-center justify-center hover:opacity-90 transition-opacity duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone min-h-[44px] flex items-center relative"
+                style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
+              >
+                <span className="relative z-[1]">Contact us</span>
+              </a>
               <Link
                 href="#work"
                 className="font-mono text-mono-label text-bone tracking-[0.08em] uppercase border border-bone px-6 py-3.5 sm:py-3 text-center justify-center hover:bg-bone hover:text-ink transition-all duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone min-h-[44px] flex items-center"
@@ -99,27 +109,6 @@ export default function Hero() {
               >
                 See our work
               </Link>
-              <a
-                href="https://tally.so/r/EkOeVB"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-mono-label text-slate tracking-[0.08em] uppercase border border-[rgba(0,0,0,0.15)] px-6 py-3.5 sm:py-3 text-center justify-center hover:border-bone hover:text-bone transition-all duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone min-h-[44px] flex items-center"
-                style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
-              >
-                Start a project
-              </a>
-            </motion.div>
-
-            {/* Horizontal mono readout strip */}
-            <motion.div
-              variants={fadeUp}
-              className="flex flex-wrap items-center gap-3 sm:gap-6 pt-4 border-t border-[rgba(0,0,0,0.1)] mt-2 md:mt-4"
-            >
-              <ReadoutItem label="Status" value="Available" live />
-              <span className="w-px h-4 bg-[rgba(0,0,0,0.1)] hidden sm:block" aria-hidden="true" />
-              <ReadoutItem label="Location" value="Global" />
-              <span className="w-px h-4 bg-[rgba(0,0,0,0.1)] hidden sm:block" aria-hidden="true" />
-              <ReadoutItem label="Output" value="8+ Ads" />
             </motion.div>
           </div>
 
@@ -173,30 +162,5 @@ export default function Hero() {
         <span className="w-px h-8 bg-[rgba(0,0,0,0.15)]" aria-hidden="true" />
       </div>
     </section>
-  );
-}
-
-// Small reusable readout item
-function ReadoutItem({
-  label,
-  value,
-  live,
-}: {
-  label: string;
-  value: string;
-  live?: boolean;
-}) {
-  return (
-    <div className="flex flex-col gap-0.5">
-      <span className="mono-label" style={{ fontSize: "0.6rem" }}>
-        {label}
-      </span>
-      <div className="flex items-center gap-1.5">
-        {live && <span className="signal-dot" style={{ width: 5, height: 5 }} aria-hidden="true" />}
-        <span className="font-mono text-xs text-bone uppercase tracking-[0.06em]">
-          {value}
-        </span>
-      </div>
-    </div>
   );
 }

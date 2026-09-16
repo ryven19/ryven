@@ -8,6 +8,7 @@ import Services from "@/components/Services";
 import Process from "@/components/Process";
 import Portfolio from "@/components/Portfolio";
 import CTA from "@/components/CTA";
+import StickyContactButton from "@/components/StickyContactButton";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -28,26 +29,29 @@ export default function Home() {
         {/* 1 — Hero */}
         <Hero />
 
-        {/* 2 — Proof / Metrics */}
-        <Metrics />
+        {/* Mobile sticky contact — appears after hero scroll */}
+        <StickyContactButton />
 
-        {/* 3 — Client strip */}
-        <LogoStrip />
-
-        {/* 4 — Showcase (SIGNATURE) */}
+        {/* 2 — Showcase (SIGNATURE) */}
         <Showcase />
 
-        {/* 5 — Services */}
-        <Services />
+        {/* 3 — Proof / Metrics */}
+        <Metrics />
 
-        {/* 6 — Who's behind RYVEN */}
-        <Founders />
-
-        {/* 7 — Process signal path (SIGNATURE) */}
+        {/* 4 — How we work (SIGNATURE) */}
         <Process />
 
-        {/* 8 — Portfolio */}
+        {/* 5 — Client strip */}
+        <LogoStrip />
+
+        {/* 6 — Services */}
+        <Services />
+
+        {/* 7 — Portfolio */}
         <Portfolio />
+
+        {/* 8 — Who's behind RYVEN */}
+        <Founders />
 
         {/* 9 — Final CTA */}
         <CTA />

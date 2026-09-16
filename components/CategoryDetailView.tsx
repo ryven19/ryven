@@ -163,9 +163,9 @@ export default function CategoryDetailView({
               href="https://tally.so/r/EkOeVB"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-xs uppercase tracking-wider border border-[rgba(0,0,0,0.2)] px-3.5 py-1.5 hover:bg-bone hover:text-white transition-colors duration-300"
+              className="btn-shimmer font-mono text-xs uppercase tracking-wider bg-bone text-ink px-3.5 py-1.5 hover:opacity-90 transition-opacity duration-300 relative"
             >
-              Start a Project
+              <span className="relative z-[1]">Contact us</span>
             </a>
           </div>
         </div>

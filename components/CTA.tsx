@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import { fadeUp, staggerContainer } from "@/lib/animations";
 
@@ -12,7 +11,7 @@ export default function CTA() {
   return (
     <section
       id="contact"
-      aria-label="Contact and start a project"
+      aria-label="Contact us"
       className="section-spacing border-t border-[rgba(0,0,0,0.1)]"
     >
       <div className="container-ryven" ref={ref}>
@@ -53,11 +52,11 @@ export default function CTA() {
               href="https://tally.so/r/EkOeVB"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-mono text-mono-label text-bone tracking-[0.08em] uppercase border border-bone px-6 sm:px-8 py-3.5 sm:py-4 text-center justify-center hover:bg-bone hover:text-ink transition-all duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone min-h-[44px] flex items-center"
+              className="btn-shimmer font-mono text-mono-label text-ink tracking-[0.08em] uppercase bg-bone px-6 sm:px-8 py-3.5 sm:py-4 text-center justify-center hover:opacity-90 transition-opacity duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone min-h-[44px] flex items-center relative"
               style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
-              aria-label="Start a project and fill out inquiry form"
+              aria-label="Contact us and fill out inquiry form"
             >
-              Start a project →
+              <span className="relative z-[1]">Contact us</span>
             </a>
             <a
               href="https://www.instagram.com/ryven.ai/"

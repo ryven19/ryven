@@ -121,6 +121,34 @@ video {
   50%       { opacity: 0.2; }
 }
 
+/* ─── Shimmer button ─────────────────────────────────────────────────────── */
+.btn-shimmer {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
 /* ─── Marquee ────────────────────────────────────────────────────────────── */
 .marquee-track {
   display: flex;
@@ -138,6 +166,7 @@ video {
 @media (prefers-reduced-motion: reduce) {
   .marquee-track { animation: none; }
   .signal-dot    { animation: none; }
+  .btn-shimmer::after { animation: none; }
   *,
   *::before,
   *::after {

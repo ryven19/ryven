@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { menuOverlay, menuItem, staggerContainer, EASE_RYVEN } from "@/lib/animations";
+import { menuOverlay, menuItem } from "@/lib/animations";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -28,6 +28,9 @@ export default function Navbar() {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
+    window.dispatchEvent(
+      new CustomEvent("ryven:mobile-menu", { detail: { open: menuOpen } })
+    );
     return () => {
       document.body.style.overflow = "";
     };
@@ -92,10 +95,10 @@ export default function Navbar() {
                 href="https://tally.so/r/EkOeVB"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-mono-label text-bone tracking-[0.08em] uppercase border border-[rgba(0,0,0,0.2)] px-4 py-2 hover:border-bone hover:bg-bone hover:text-ink transition-all duration-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone"
+                className="btn-shimmer font-mono text-mono-label text-ink tracking-[0.08em] uppercase bg-bone px-4 py-2 hover:opacity-90 transition-opacity duration-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone relative"
                 style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
               >
-                Start a project
+                <span className="relative z-[1]">Contact us</span>
               </a>
             </div>
 
@@ -136,52 +139,29 @@ export default function Navbar() {
           <motion.div
             id="mobile-menu"
             role="dialog"
-            aria-label="Navigation menu"
+            aria-label="Contact menu"
             aria-modal="true"
             initial="hidden"
             animate="visible"
             exit="exit"
             variants={menuOverlay}
-            className="fixed inset-0 z-40 bg-[#ffffff] flex flex-col pt-20 px-[1.25rem] pb-8 md:hidden overflow-y-auto"
+            className="fixed inset-0 z-40 bg-[#ffffff] flex flex-col items-center justify-center px-[1.25rem] pb-8 md:hidden"
           >
-            {/* Nav links */}
-            <motion.ul
-              role="list"
-              variants={staggerContainer}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col gap-1 list-none mt-6 flex-1"
-            >
-              {navLinks.map((link) => (
-                <motion.li key={link.href} variants={menuItem}>
-                  <Link
-                    href={link.href}
-                    onClick={closeMenu}
-                    className="block font-serif italic text-display-sm text-bone py-3 border-b border-[rgba(0,0,0,0.1)] hover:text-slate transition-colors duration-300 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone min-h-[44px] flex items-center"
-                  >
-                    {link.label}
-                  </Link>
-                </motion.li>
-              ))}
-            </motion.ul>
-
-            {/* Mobile CTA at bottom */}
             <motion.div
               variants={menuItem}
               initial="hidden"
               animate="visible"
-              transition={{ delay: 0.3 }}
-              className="pt-6 mt-auto"
+              className="w-full max-w-sm"
             >
               <a
                 href="https://tally.so/r/EkOeVB"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMenu}
-                className="block font-mono text-mono-label text-bone tracking-[0.08em] uppercase border border-[rgba(0,0,0,0.2)] px-4 py-3.5 text-center hover:border-bone hover:bg-bone hover:text-ink transition-all duration-400 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone min-h-[44px] flex items-center justify-center"
+                className="btn-shimmer flex items-center justify-center w-full font-mono text-mono-label text-ink tracking-[0.08em] uppercase bg-bone px-6 py-3.5 min-h-[48px] hover:opacity-90 transition-opacity duration-500 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone relative"
                 style={{ transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)" }}
               >
-                Start a project
+                <span className="relative z-[1]">Contact us</span>
               </a>
             </motion.div>
           </motion.div>
