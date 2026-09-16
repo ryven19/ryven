@@ -9,6 +9,11 @@ import { crossfade, fadeUp, staggerContainer } from "@/lib/animations";
 import { showcaseCategories } from "@/data/showcase";
 
 type CategoryId = (typeof showcaseCategories)[number]["id"];
+type ShowcaseCategory = (typeof showcaseCategories)[number];
+
+function isMobileViewport() {
+  return typeof window !== "undefined" && window.matchMedia("(max-width: 1023px)").matches;
+}
 
 // ─── Poster frames for each showcase featured video ───────────────────────────
 // Extracted at build time so a still frame shows immediately on first render.
@@ -73,6 +78,80 @@ function TabVideo({ src, poster }: { src: string; poster?: string }) {
   );
 }
 
+const VIDEO_PANEL_CLASS =
+  "w-full max-w-[340px] sm:max-w-[390px] xl:max-w-[410px] flex flex-col bg-white border border-[rgba(0,0,0,0.08)] shadow-sm";
+
+function ShowcaseVideoPanel({
+  category,
+  onNavigate,
+}: {
+  category: ShowcaseCategory;
+  onNavigate: (slug: string) => void;
+}) {
+  return (
+    <div className={VIDEO_PANEL_CLASS}>
+      <div
+        className="viewfinder relative w-full aspect-[4/5] bg-surface flex items-center justify-center overflow-hidden cursor-pointer group"
+        aria-label={`Preview: ${category.label}`}
+        onClick={() => onNavigate(category.slug)}
+        title="Click to open samples page"
+      >
+        <span className="vf-tl z-20" aria-hidden="true" />
+        <span className="vf-tr z-20" aria-hidden="true" />
+        <span className="vf-bl z-20" aria-hidden="true" />
+        <span className="vf-br z-20" aria-hidden="true" />
+
+        <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-surface">
+          {category.featuredMedia.type === "video" ? (
+            <TabVideo
+              src={category.featuredMedia.src}
+              poster={SHOWCASE_POSTERS[category.featuredMedia.src]}
+            />
+          ) : (
+            /* eslint-disable-next-line @next/next/no-img-element */
+            <img
+              src={category.featuredMedia.src}
+              alt={category.label}
+              className="w-full h-full object-cover bg-surface"
+            />
+          )}
+        </div>
+
+        <div className="absolute inset-0 z-20 bg-bone/20 opacity-0 group-hover:opacity-100 transition-opacity hidden lg:flex items-center justify-center">
+          <span className="font-mono text-xs uppercase tracking-wider bg-white/95 text-bone px-3.5 py-1.5 shadow-md flex items-center gap-1.5">
+            <span>Open Reference Suite</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </span>
+        </div>
+
+        <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-2 px-2.5 py-1 bg-white/95 backdrop-blur-sm border border-[rgba(0,0,0,0.08)] shadow-xs">
+          <span className="signal-dot" aria-hidden="true" />
+          <span className="mono-label text-[0.6rem] text-bone font-medium">
+            {category.label}
+          </span>
+        </div>
+
+        <div className="absolute top-3.5 right-3.5 z-20 px-2 py-0.5 bg-black/60 backdrop-blur-sm text-white mono-label text-[0.55rem] tracking-widest font-mono">
+          {category.tag}
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between border-t border-[rgba(0,0,0,0.06)] bg-white px-4 py-3">
+        <span className="mono-label text-[0.65rem] text-slate font-mono">
+          {category.tag}
+        </span>
+        <Link
+          href={`/work/${category.slug}`}
+          className="flex items-center gap-1.5 font-mono text-xs text-bone hover:text-slate transition-colors"
+        >
+          <span className="signal-dot" aria-hidden="true" />
+          <span className="font-medium">VIEW WORK →</span>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Showcase() {
@@ -91,14 +170,25 @@ export default function Showcase() {
     [router]
   );
 
-  const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent, slug: string) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        handleNavigate(slug);
+  const handleCategoryActivate = useCallback(
+    (cat: ShowcaseCategory) => {
+      if (isMobileViewport()) {
+        setActiveId(cat.id);
+        return;
       }
+      handleNavigate(cat.slug);
     },
     [handleNavigate]
+  );
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent, cat: ShowcaseCategory) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleCategoryActivate(cat);
+      }
+    },
+    [handleCategoryActivate]
   );
 
   return (
@@ -141,21 +231,25 @@ export default function Showcase() {
                   <div
                     key={cat.id}
                     role="listitem"
-                    tabIndex={0}
-                    onMouseEnter={() => {
-                      setActiveId(cat.id);
-                      setHoveredId(cat.id);
-                    }}
-                    onMouseLeave={() => setHoveredId(null)}
-                    onClick={() => handleNavigate(cat.slug)}
-                    onKeyDown={(e) => handleKeyDown(e, cat.slug)}
-                    aria-label={`${cat.label} — ${cat.description}`}
-                    className={`w-full text-left py-3.5 md:py-5 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone cursor-pointer select-none border-b border-[rgba(0,0,0,0.08)] ${
-                      isActive
-                        ? "text-bone"
-                        : "text-slate hover:text-bone"
-                    }`}
+                    className="border-b border-[rgba(0,0,0,0.08)]"
                   >
+                    <div
+                      tabIndex={0}
+                      onMouseEnter={() => {
+                        setActiveId(cat.id);
+                        setHoveredId(cat.id);
+                      }}
+                      onMouseLeave={() => setHoveredId(null)}
+                      onClick={() => handleCategoryActivate(cat)}
+                      onKeyDown={(e) => handleKeyDown(e, cat)}
+                      aria-label={`${cat.label} — ${cat.description}`}
+                      aria-selected={isActive}
+                      className={`w-full text-left py-3.5 md:py-5 transition-all duration-300 group focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-bone cursor-pointer select-none ${
+                        isActive
+                          ? "text-bone"
+                          : "text-slate hover:text-bone"
+                      }`}
+                    >
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex items-start gap-3 md:gap-3.5 min-w-0">
                         <span className="mono-label text-xs font-mono w-5 flex-shrink-0 opacity-40 pt-1">
@@ -206,8 +300,13 @@ export default function Showcase() {
                         >
                           {cat.tag}
                         </span>
-                        <span
-                          aria-hidden="true"
+                        <button
+                          type="button"
+                          aria-label={`Open ${cat.label} work`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleNavigate(cat.slug);
+                          }}
                           className={`w-8 h-8 md:w-7 md:h-7 border flex items-center justify-center transition-all duration-300 flex-shrink-0 ${
                             isActive
                               ? "border-bone/30 text-bone bg-white shadow-xs"
@@ -215,102 +314,57 @@ export default function Showcase() {
                           }`}
                         >
                           <ArrowUpRight className="w-3.5 h-3.5" />
-                        </span>
+                        </button>
                       </div>
                     </div>
+                    </div>
+
+                    {/* Mobile — full-size video below tapped category */}
+                    <AnimatePresence initial={false}>
+                      {isActive && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                          className="lg:hidden overflow-hidden"
+                        >
+                          <div className="pb-5 pt-2 w-full flex justify-center">
+                            <ShowcaseVideoPanel
+                              category={cat}
+                              onNavigate={handleNavigate}
+                            />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 );
               })}
           </motion.div>
 
-          {/* Video preview — below categories on mobile, right column on desktop */}
+          {/* Video preview — desktop right column only */}
           <motion.div
             variants={fadeUp}
-            className="order-3 lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:row-span-3 flex flex-col items-center lg:items-end justify-center w-full"
+            className="hidden lg:flex order-3 lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:row-span-3 flex-col items-center lg:items-end justify-center w-full"
             role="tabpanel"
             id={`panel-${activeId}`}
             aria-labelledby={`tab-${activeId}`}
           >
-            <div className="w-full max-w-[340px] sm:max-w-[390px] xl:max-w-[410px] flex flex-col bg-white border border-[rgba(0,0,0,0.08)] shadow-sm">
-              {/* Viewfinder container — 4:5 portrait frame */}
-              <div
-                className="viewfinder relative w-full aspect-[4/5] bg-surface flex items-center justify-center overflow-hidden cursor-pointer group"
-                aria-label={`Preview: ${activeCategory.label}`}
-                onClick={() => handleNavigate(activeCategory.slug)}
-                title="Click to open samples page"
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeId}
+                variants={crossfade}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
               >
-                {/* Viewfinder corner marks */}
-                <span className="vf-tl z-20" aria-hidden="true" />
-                <span className="vf-tr z-20" aria-hidden="true" />
-                <span className="vf-bl z-20" aria-hidden="true" />
-                <span className="vf-br z-20" aria-hidden="true" />
-
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeId}
-                    variants={crossfade}
-                    initial="hidden"
-                    animate="visible"
-                    exit="exit"
-                    className="absolute inset-0 w-full h-full flex items-center justify-center bg-surface"
-                  >
-                    {activeCategory.featuredMedia.type === "video" ? (
-                      <TabVideo
-                        src={activeCategory.featuredMedia.src}
-                        poster={SHOWCASE_POSTERS[activeCategory.featuredMedia.src]}
-                      />
-                    ) : (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img
-                        src={activeCategory.featuredMedia.src}
-                        alt={activeCategory.label}
-                        className="w-full h-full object-cover bg-surface"
-                      />
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-
-                {/* Hover overlay hint */}
-                <div className="absolute inset-0 z-20 bg-bone/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <span className="font-mono text-xs uppercase tracking-wider bg-white/95 text-bone px-3.5 py-1.5 shadow-md flex items-center gap-1.5">
-                    <span>Open Reference Suite</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-
-                {/* Top overlay badge */}
-                <div className="absolute top-3.5 left-3.5 z-20 flex items-center gap-2 px-2.5 py-1 bg-white/95 backdrop-blur-sm border border-[rgba(0,0,0,0.08)] shadow-xs">
-                  <span className="signal-dot" aria-hidden="true" />
-                  <span className="mono-label text-[0.6rem] text-bone font-medium">
-                    {activeCategory.label}
-                  </span>
-                </div>
-
-                {/* Top right tag */}
-                <div className="absolute top-3.5 right-3.5 z-20 px-2 py-0.5 bg-black/60 backdrop-blur-sm text-white mono-label text-[0.55rem] tracking-widest font-mono">
-                  {activeCategory.tag}
-                </div>
-              </div>
-
-              {/* Bottom strip */}
-              <div
-                className="flex items-center justify-between border-t border-[rgba(0,0,0,0.06)] bg-white px-4 py-3"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="mono-label text-[0.65rem] text-slate font-mono">
-                    {activeCategory.tag}
-                  </span>
-                </div>
-                {/* View link */}
-                <Link
-                  href={`/work/${activeCategory.slug}`}
-                  className="flex items-center gap-1.5 font-mono text-xs text-bone hover:text-slate transition-colors"
-                >
-                  <span className="signal-dot" aria-hidden="true" />
-                  <span className="font-medium">VIEW WORK →</span>
-                </Link>
-              </div>
-            </div>
+                <ShowcaseVideoPanel
+                  category={activeCategory}
+                  onNavigate={handleNavigate}
+                />
+              </motion.div>
+            </AnimatePresence>
           </motion.div>
 
           {/* Bottom telemetry */}
