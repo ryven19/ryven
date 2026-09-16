@@ -16,8 +16,8 @@ const metrics = [
     tag: "// 02 · TRUST",
     value: "12",
     unit: "+",
-    label: "Repeat Clients",
-    desc: "Long-term partners across fashion, beauty, food & tech",
+    label: "Clients",
+    desc: "Long-term partners across fashion, beauty, food, tech, real estate, and healthcare",
   },
   {
     tag: "// 03 · REACH",
@@ -30,8 +30,9 @@ const metrics = [
     tag: "// 04 · OUTPUT",
     value: "10",
     unit: "+",
-    label: "Commercial Spots",
-    desc: "High-cadence UGC & cinematic video ads",
+    label: "Output Style",
+    outputStyle: true,
+    desc: "High-cadence UGC, cinematic ads, and commercial synthesis",
   },
 ];
 
@@ -99,7 +100,11 @@ export default function Metrics() {
 
                 {/* Metric label */}
                 <h3 className="font-sans text-base font-medium text-bone mb-1">
-                  {metric.label}
+                  {"outputStyle" in metric && metric.outputStyle ? (
+                    <em className="font-serif italic font-normal">{metric.label}</em>
+                  ) : (
+                    metric.label
+                  )}
                 </h3>
               </div>
 

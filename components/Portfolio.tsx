@@ -27,8 +27,8 @@ export default function Portfolio() {
           <motion.div variants={fadeUp}>
             <p className="mono-label mb-2 md:mb-3">// SELECTED WORK</p>
             <h2 className="font-sans font-medium text-display-md text-bone leading-tight tracking-[-0.02em]">
-              Work that{" "}
-              <em className="font-serif italic font-normal">ships.</em>
+              Content that generates{" "}
+              <em className="font-serif italic font-normal">revenue.</em>
             </h2>
           </motion.div>
           <motion.p variants={fadeUp} className="font-sans text-sm text-slate max-w-xs leading-relaxed">
