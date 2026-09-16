@@ -31,7 +31,6 @@ const metrics = [
     value: "10",
     unit: "+",
     label: "Output Style",
-    outputStyle: true,
     desc: "High-cadence UGC, cinematic ads, and commercial synthesis",
   },
 ];
@@ -100,11 +99,7 @@ export default function Metrics() {
 
                 {/* Metric label */}
                 <h3 className="font-sans text-base font-medium text-bone mb-1">
-                  {"outputStyle" in metric && metric.outputStyle ? (
-                    <em className="font-serif italic font-normal">{metric.label}</em>
-                  ) : (
-                    metric.label
-                  )}
+                  {metric.label}
                 </h3>
               </div>
 
