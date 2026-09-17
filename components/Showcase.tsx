@@ -78,9 +78,6 @@ function TabVideo({ src, poster }: { src: string; poster?: string }) {
   );
 }
 
-const VIDEO_PANEL_CLASS =
-  "w-full max-w-[340px] sm:max-w-[390px] xl:max-w-[410px] flex flex-col bg-white border border-[rgba(0,0,0,0.08)] shadow-sm";
-
 function ShowcaseVideoPanel({
   category,
   onNavigate,
@@ -89,7 +86,7 @@ function ShowcaseVideoPanel({
   onNavigate: (slug: string) => void;
 }) {
   return (
-    <div className={VIDEO_PANEL_CLASS}>
+    <div className="w-full flex flex-col bg-white border border-[rgba(0,0,0,0.08)] shadow-sm">
       <div
         className="viewfinder relative w-full aspect-[4/5] bg-surface flex items-center justify-center overflow-hidden cursor-pointer group"
         aria-label={`Preview: ${category.label}`}
@@ -101,21 +98,30 @@ function ShowcaseVideoPanel({
         <span className="vf-bl z-20" aria-hidden="true" />
         <span className="vf-br z-20" aria-hidden="true" />
 
-        <div className="absolute inset-0 w-full h-full flex items-center justify-center bg-surface">
-          {category.featuredMedia.type === "video" ? (
-            <TabVideo
-              src={category.featuredMedia.src}
-              poster={SHOWCASE_POSTERS[category.featuredMedia.src]}
-            />
-          ) : (
-            /* eslint-disable-next-line @next/next/no-img-element */
-            <img
-              src={category.featuredMedia.src}
-              alt={category.label}
-              className="w-full h-full object-cover bg-surface"
-            />
-          )}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={category.id}
+            variants={crossfade}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            className="absolute inset-0 w-full h-full flex items-center justify-center bg-surface"
+          >
+            {category.featuredMedia.type === "video" ? (
+              <TabVideo
+                src={category.featuredMedia.src}
+                poster={SHOWCASE_POSTERS[category.featuredMedia.src]}
+              />
+            ) : (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
+                src={category.featuredMedia.src}
+                alt={category.label}
+                className="w-full h-full object-cover bg-surface"
+              />
+            )}
+          </motion.div>
+        </AnimatePresence>
 
         <div className="absolute inset-0 z-20 bg-bone/20 opacity-0 group-hover:opacity-100 transition-opacity hidden lg:flex items-center justify-center">
           <span className="font-mono text-xs uppercase tracking-wider bg-white/95 text-bone px-3.5 py-1.5 shadow-md flex items-center gap-1.5">
@@ -330,10 +336,12 @@ export default function Showcase() {
                           className="lg:hidden overflow-hidden"
                         >
                           <div className="pb-5 pt-2 w-full flex justify-center">
-                            <ShowcaseVideoPanel
-                              category={cat}
-                              onNavigate={handleNavigate}
-                            />
+                            <div className="w-full max-w-[340px] sm:max-w-[390px]">
+                              <ShowcaseVideoPanel
+                                category={cat}
+                                onNavigate={handleNavigate}
+                              />
+                            </div>
                           </div>
                         </motion.div>
                       )}
@@ -343,7 +351,7 @@ export default function Showcase() {
               })}
           </motion.div>
 
-          {/* Video preview — desktop right column only */}
+          {/* Video preview — desktop right column (original size + position) */}
           <motion.div
             variants={fadeUp}
             className="hidden lg:flex order-3 lg:col-span-5 lg:col-start-8 lg:row-start-1 lg:row-span-3 flex-col items-center lg:items-end justify-center w-full"
@@ -351,20 +359,12 @@ export default function Showcase() {
             id={`panel-${activeId}`}
             aria-labelledby={`tab-${activeId}`}
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeId}
-                variants={crossfade}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-              >
-                <ShowcaseVideoPanel
-                  category={activeCategory}
-                  onNavigate={handleNavigate}
-                />
-              </motion.div>
-            </AnimatePresence>
+            <div className="w-full max-w-[340px] sm:max-w-[390px] xl:max-w-[410px]">
+              <ShowcaseVideoPanel
+                category={activeCategory}
+                onNavigate={handleNavigate}
+              />
+            </div>
           </motion.div>
 
           {/* Bottom telemetry */}
