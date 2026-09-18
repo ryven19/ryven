@@ -938,6 +938,49 @@ export const showcaseCategories: ShowcaseCategory[] = [
           },
         ],
       },
+      {
+        id: "real-estate",
+        slug: "real-estate",
+        title: "Real Estate Cinematics",
+        subtitle: "Luxury Architectural Walkthroughs",
+        client: "Residential Series",
+        year: "2025",
+        tag: "REAL ESTATE",
+        description:
+          "AI-generative spatial walkthroughs for luxury residential properties — volumetric lighting, fluid camera, photorealistic interiors.",
+        coverMedia: {
+          type: "video",
+          src: "/R1.mp4",
+        },
+        deliverables: [
+          {
+            id: "re-01",
+            title: "Horizon Villa & Estate",
+            client: "Residential Series",
+            category: "Architectural Walkthrough",
+            year: "2025",
+            description:
+              "Cinematic spatial walkthrough featuring ambient daylight transitions, custom interior textures, and fluid camera movements.",
+            mediaType: "video",
+            src: "/R1.mp4",
+            aspectRatio: "video",
+            tags: ["Real Estate", "Architecture", "Spatial", "Cinematic"],
+          },
+          {
+            id: "re-02",
+            title: "Vanguard Minimalist Residence",
+            client: "Residential Series",
+            category: "Interior Tour",
+            year: "2025",
+            description:
+              "Photorealistic interior walkthrough highlighting spatial geometry, natural wood craftsmanship, and minimalist design.",
+            mediaType: "video",
+            src: "/R2.mp4",
+            aspectRatio: "video",
+            tags: ["Real Estate", "Interior", "Minimalist", "Architecture"],
+          },
+        ],
+      },
     ],
   },
 ];

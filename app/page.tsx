@@ -38,22 +38,22 @@ export default function Home() {
         {/* 3 — Proof / Metrics */}
         <Metrics />
 
-        {/* 4 — How we work (SIGNATURE) */}
+        {/* 5 — How we work (SIGNATURE) */}
         <Process />
 
-        {/* 5 — Client strip */}
+        {/* 6 — Client strip */}
         <LogoStrip />
 
-        {/* 6 — Services */}
+        {/* 7 — Services */}
         <Services />
 
-        {/* 7 — Portfolio */}
+        {/* 8 — Portfolio */}
         <Portfolio />
 
-        {/* 8 — Who's behind RYVEN */}
+        {/* 9 — Who's behind RYVEN */}
         <Founders />
 
-        {/* 9 — Final CTA */}
+        {/* 10 — Final CTA */}
         <CTA />
       </main>
 
